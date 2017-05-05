@@ -4,7 +4,7 @@ namespace Lpf\Applications\Infrastructure\Http\Requests\Users;
 
 use Lpf\Support\Http\Request;
 
-class CreateRequest extends Request
+class StoreUserRequest extends Request
 {
     /**
      * Get the validation rules that apply to the request.
