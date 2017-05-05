@@ -1,0 +1,1 @@
+<button class="btn btn-danger btn-xs{{ !empty($disable) ? ' disabled' : '' }}"{{ !empty($disable) ? ' disabled' : '' }} href="{{ $route }}" data-confirm="true" data-confirm-danger="true"><i class="fa fa-trash"></i></button>

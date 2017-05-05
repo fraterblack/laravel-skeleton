@@ -1,0 +1,1 @@
+<a href="{{ $route }}" class="btn btn-default btn-xs" data-toggle="tooltip" title="Desativar"><i class="fa fa-eye-slash"></i></a>

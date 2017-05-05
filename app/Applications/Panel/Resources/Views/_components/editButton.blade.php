@@ -1,0 +1,1 @@
+<a class="btn btn-primary btn-xs" href="{{ $route }}"><i class="fa fa-edit"></i></a>

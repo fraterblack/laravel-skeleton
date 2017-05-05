@@ -1,0 +1,13 @@
+{
+  "elixir": {
+    "sourcemaps" : false,
+    "versioning" : false,
+    "disable_elixir_notifier" : true,
+    "css": {
+      "sass": {
+        "folder": "sass/panel"
+      },
+      "folder": "css/panel"
+    }
+  }
+}

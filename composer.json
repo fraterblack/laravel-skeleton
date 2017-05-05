@@ -1,0 +1,92 @@
+{
+  "name": "laravel/laravel",
+  "description": "The Laravel Framework.",
+  "keywords": [
+    "framework",
+    "laravel"
+  ],
+  "license": "MIT",
+  "type": "project",
+  "require": {
+    "php": ">=5.6.4",
+    "laravel/framework": "5.3.*",
+    "laravelcollective/html": "5.3.*",
+    "barryvdh/laravel-ide-helper": "^2.1",
+    "artesaos/defender": "^0.6.2",
+    "rutorika/sortable": "^3.2",
+    "cviebrock/eloquent-sluggable": "^4.1.1",
+    "owen-it/laravel-auditing": "^2.0",
+    "artesaos/seotools": "v0.7.3.6",
+    "doctrine/dbal": "^2.5",
+    "guzzlehttp/guzzle": "~5.0",
+    "sofa/eloquence": "~5.3@dev",
+    "artesaos/warehouse": "3.0.*",
+    "mews/purifier": "^2.0",
+    "barryvdh/laravel-debugbar": "^2.3",
+    "artesaos/migrator": "^1.2",
+    "intervention/image": "2.*",
+    "fraterblack/attacher": "dev-master",
+    "predis/predis": "^1.1"
+  },
+  "require-dev": {
+    "fzaninotto/faker": "~1.4",
+    "mockery/mockery": "0.9.*",
+    "phpunit/phpunit": "~5.0",
+    "symfony/css-selector": "3.1.*",
+    "symfony/dom-crawler": "3.1.*",
+    "phpspec/phpspec": "~2.1",
+    "laracasts/generators": "^1.1",
+    "laracasts/testdummy": "^2.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Lpf\\": "app/"
+    }
+  },
+  "autoload-dev": {
+    "classmap": [
+      "tests/TestCase.php"
+    ]
+  },
+  "scripts": {
+    "post-root-package-install": [
+      "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ],
+    "post-create-project-cmd": [
+      "php artisan key:generate"
+    ],
+    "post-install-cmd": [
+      "Illuminate\\Foundation\\ComposerScripts::postInstall",
+      "php artisan optimize"
+    ],
+    "post-update-cmd": [
+      "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+      "php artisan optimize"
+    ]
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "fraterblack/attacher",
+        "version": "dev-master",
+        "source": {
+          "url": "https://github.com/fraterblack/attacher.git",
+          "type": "git",
+          "reference": "93b39772d1a439e300bad164ff7b927e70b13a96"
+        },
+        "autoload": {
+          "classmap": [
+            ""
+          ]
+        },
+        "require": {
+          "graham-campbell/flysystem": "^3.0"
+        }
+      }
+    }
+  ]
+}

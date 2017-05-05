@@ -1,0 +1,624 @@
+@import "_vars"
+
+//EXTEND/AJUSTA ESTILO PADRÃO DO PAINEL
+@font-face
+  font-family: 'Glyphicons Halflings'
+
+  src: url('#{$urlBaseFonts}fonts/glyphicons-halflings-regular.eot')
+  src: url('#{$urlBaseFonts}fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('#{$urlBaseFonts}fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('#{$urlBaseFonts}fonts/glyphicons-halflings-regular.woff') format('woff'), url('#{$urlBaseFonts}fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('#{$urlBaseFonts}fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg')
+
+//Loader
+.page-loading
+  position: fixed
+  z-index: 100
+  width: 40px
+  height: 40px
+  left: 50%
+  top: 50%
+  margin-left: -20px
+  margin-top: -20px
+  opacity: 0.7
+
+  border-radius: 4px
+
+  background: url(#{$urlBaseImages}images/panel/loading.gif) #fff no-repeat center center
+
+  //Layout
+.layout-boxed
+  background: $colorGray
+
+  .wrapper
+    max-width: 1440px
+
+.pagination-info
+  margin-top: 20px
+  line-height: 35px
+
+.box-actions //Box de ações principais logo após header
+  overflow: hidden
+  margin-bottom: 20px
+
+  &:empty
+    display: none
+
+  label + .label
+    margin-left: 10px
+
+.help-block
+  font-size: 12px
+  line-height: 1.3em
+  color: #666
+
+.form-group label + label
+  margin-left: 15px
+  
+.form-group :last-child
+  margin-bottom: 0
+
+.horizontal-separator
+  margin-bottom: 10px
+  margin-top: 10px
+
+.initially-hidden
+  display: none
+
+//Base iframe
+.base-iframe
+  .content-wrapper
+    margin-left: 0 !important
+    background: none !important
+
+  .hidden-in-iframe
+    display: none !important
+
+//Tabs
+.nav-tabs-custom>.nav-tabs>li>a,
+.nav-tabs-custom>.nav-tabs>li>a:hover
+  background: #f6f6f6
+
+.nav-tabs-custom .tab-content
+  padding-top: 25px
+
+.tab-container
+  margin-bottom: 20px
+
+  .nav-tabs
+    .has-error
+      color: $colorDanger !important
+
+      &:after
+        content: '!'
+        position: absolute
+        margin-left: 3px
+        margin-top: -6px
+        color: $colorDanger
+
+//Form
+.form-control.active
+  background-color: $colorYellow
+  border-color: $colorPrimary
+
+.form-control-clear-search //Limpa formulário de busca
+  right: 30px
+
+  cursor: pointer
+  pointer-events: auto
+  text-decoration: none
+
+.field
+  &.required
+    label:not(.input-group-addon):after
+      content: '*'
+      margin-left: 4px
+      color: $colorDanger
+      font-weight: bolder
+
+  &.error
+    input,
+    select,
+    .select2-selection
+      border-color: $colorDanger
+
+  label[data-title]
+    &:before
+      content: '\f05a'
+      font-family: 'FontAwesome'
+      float: right
+      margin-left: 7px
+
+.attached-label
+  margin-left: 10px
+  padding: 6px
+  line-height: 1
+  background-color: #f7f7f7
+  border: 1px solid #aeaeae
+  border-radius: 3px
+  cursor: pointer
+
+//Torna elemento opaco, danto a impressão de desabilitado
+.disabled-element
+  opacity: 0.3
+
+  -webkit-transition: opacity 200ms
+    transition: opacity 200ms
+
+
+//Campo data
+.daterangepicker .calendar td.today:not(.active) //DatePicker
+  background-color: $colorGray
+
+//Colorpicker
+.colorpicker
+  min-width: auto
+  padding: 5px
+
+.colorpicker-saturation
+  background-image: url("/vendor/AdminLTE/colorpicker/img/saturation.png") !important
+
+.colorpicker-hue
+  background-image: url("/vendor/AdminLTE/colorpicker/img/hue.png") !important
+
+.colorpicker-alpha,
+.colorpicker-color
+  background-image: url("/vendor/AdminLTE/colorpicker/img/alpha.png") !important
+
+.colorpicker.colorpicker-horizontal .colorpicker-hue
+  background-image: url("/vendor/AdminLTE/colorpicker/img/hue-horizontal.png") !important
+
+.colorpicker.colorpicker-horizontal .colorpicker-alpha
+  background-image: url("/vendor/AdminLTE/colorpicker/img/alpha-horizontal.png") !important
+
+.colorpicker-input
+  .input-group-addon i
+    display: inline-block
+    width: 16px
+    border: 1px solid #666
+    background: url("/vendor/AdminLTE/colorpicker/img/hue-horizontal.png")
+    background-size: 100% 100%
+
+    &[style]
+      background-image: none
+
+//Select2
+.select2-container
+  display: block
+  width: 100% !important
+
+  .select2-selection--multiple
+    .select2-selection__choice
+      background: $colorPrimary !important
+      border-color: #367fa9 !important
+    
+      .select2-selection__choice__remove
+        color: #fff
+
+.ui.form
+  .select2-container
+    .select2-selection--single
+      height: 34px !important
+
+.select2-results
+  box-shadow: 1px 1px 20px rgba(#000, 0.6)
+
+  .select2-results__options
+    max-height: 300px !important
+
+  .select2-results__option
+    font-size: 13px
+    line-height: 1.1em
+
+    img
+      display: inline-block
+      width: 45px
+      margin-right: 12px
+
+//Fancybox
+#fancybox-loading, .fancybox-close,
+.fancybox-prev span,
+.fancybox-next span
+  background-image: url(../../vendor/bower/fancybox/source/fancybox_sprite.png)
+
+#fancybox-loading div
+  background: url(../../vendor/bower/fancybox/source/fancybox_loading.gif) center center no-repeat
+
+#fancybox-loading,
+.fancybox-close,
+.fancybox-prev span,
+.fancybox-next span
+  background-image: url(../../vendor/bower/fancybox/source/fancybox_sprite.png)
+
+.fancybox-overlay
+  background: url(../../vendor/bower/fancybox/source/fancybox_overlay.png)
+
+//Formulário de busca
+.search-form-of-records
+  .defaultSelect2,
+  .multipleSelect2
+    max-height: 30px
+    line-height: 30px
+    opacity: 0.5
+
+  .has-filter + .select2,
+  .has-filter + .select2-container
+    .select2-selection
+      border-color: $colorPrimary
+      background: #FFFDDF
+
+  .select2,
+  .select2-container
+    line-height: 17px !important
+    font-size: 12px
+    padding: 0
+
+    .select2-selection
+      min-height: 17px
+      border-radius: 2px
+
+    .select2-search__field
+      border: 1px solid transparent !important
+      margin-top: 6px !important
+      height: 17px
+
+    .select2-selection__choice
+      max-width: 90%
+      overflow: hidden
+      padding: 0 7px 0 18px !important
+      text-overflow: ellipsis
+
+      .select2-selection__choice__remove
+        position: absolute
+        margin-left: -12px
+        font-size: 15px !important
+
+    &--default .select2-selection--single,
+    .select2-selection .select2-selection--single
+      padding: 4px 15px 4px 8px
+      height: 30px
+
+      .select2-selection__arrow b
+        margin-top: -2px
+
+      .select2-selection__clear
+        margin-top: 0
+        font-size: 18px !important
+
+    //Quando ativo
+    &.active
+      .select2-selection--single,
+      .select2-selection--multiple
+        background-color: $colorYellow
+        border-color: $colorPrimary
+
+//Ajuste Icheck quando minimizado
+.icheckbox_square-blue,
+.iradio_square-blue
+    background: url(#{$urlBaseVendor}vendor/iCheck/skins/square/blue.png) no-repeat
+.icheckbox_line-blue .icheck_line-icon,
+.iradio_line-blue .icheck_line-icon
+    background: url(#{$urlBaseVendor}vendor/iCheck/skins/line/line.png) no-repeat
+
+.iradio_square-blue
+  background-position: -120px 0
+
+//Hidden Content Container
+.hidden-content-container
+  &:before,
+  &:after
+    content: attr(data-closed-text)
+    display: inline-block
+    cursor: pointer
+    line-height: 1.2em
+    color: darken($colorGray, 30%)
+    border-bottom: 1px solid darken($colorGray, 30%)
+
+  &:after
+    content: attr(data-open-text)
+    display: none
+    margin-top: 5px
+
+  &>*
+    display: none
+
+  &.open
+    &:before
+      display: none
+
+    &:after
+      display: inline-block
+
+    &>*
+      display: block
+
+//Lista expansível
+.collapsible-list
+  &>li>ul
+    &:before
+      font-family: 'FontAwesome'
+      content: '\f078'
+      color: $colorPrimary
+      display: inline-block
+      width: 100px
+      padding: 0 4px
+      cursor: pointer
+
+    &>li
+      position: relative
+      padding-left: 15px
+      max-height: 0
+      overflow: hidden
+
+      -webkit-transition: max-height 200ms
+      transition: max-height 200ms
+
+    &.open
+      &:before
+        content: '\f077'
+
+      &>li
+        max-height: 3000px
+        overflow: visible
+
+//Tabela
+.table
+  &:last-child
+    margin-bottom: 0
+
+  th
+    &[data-column="id"]
+    width: 15px !important
+
+  td
+    &.big
+      font-size: 17px
+
+    .highlight
+      background: #ffcb0c !important
+      color: #000 !important
+
+  .v-a-top
+    vertical-align: top
+  .v-a-bottom
+    vertical-align: bottom
+  .v-a-middle
+    vertical-align: middle
+
+  tbody .empty-message
+    background: #fff9df
+
+    &:not(:last-child)
+      display: none
+
+//Sortable
+.sortable-table
+  th
+    &.sort-column
+      padding-left: 0
+      padding-right: 0
+      text-align: center
+
+      i
+        margin-right: 12px
+
+  td
+    &.sortable-handle
+      width: 20px !important
+      padding-left: 0
+      padding-right: 0
+      text-align: center
+      cursor: move
+
+  .ui-sortable-helper
+    display: -webkit-box
+    display: -moz-box
+    display: -ms-flexbox
+    display: -webkit-flex
+    display: flex
+
+    -webkit-flex-flow: row wrap
+    justify-content: flex-start
+
+    background: #EBF5FB
+
+    td
+      flex-grow: 1
+      background: #EBF5FB
+
+// ALTERNA ENTRE DOIS BOTÕES - APÓS AÇÕES AJAX
+.ajax-action-group-container
+
+  a.loading
+    opacity: 0.4
+
+  &[data-item-visible="1"]
+    a[data-item="2"]
+      display: none !important
+
+
+  &[data-item-visible="2"]
+    a[data-item="1"]
+      display: none !important
+
+img
+  max-width: 100%
+
+//Sizes (Classes auxiliares para formatação de largura
+.size-30
+  min-width: 30px
+.size-50
+  min-width: 50px
+.size-80
+  min-width: 80px
+.size-100
+  min-width: 100px
+.size-150
+  min-width: 150px
+.size-200
+  min-width: 200px
+
+.size-miw-30
+  min-width: 30px
+.size-miw-50
+  min-width: 50px
+.size-miw-80
+  min-width: 80px
+.size-miw-100
+  min-width: 100px
+.size-miw-150
+  min-width: 150px
+.size-miw-200
+  min-width: 200px
+
+.size-maw-30
+  max-width: 30px
+.size-maw-50
+  max-width: 50px
+.size-maw-80
+  max-width: 80px
+.size-maw-100
+  max-width: 100px
+.size-maw-150
+  max-width: 150px
+.size-maw-200
+  max-width: 200px
+
+//Semantic UI
+.ui
+  font-size: inherit !important
+
+//UI Message
+.ui.message
+  display: none
+  &:not(:empty)
+    display: block
+
+.ui.form.loading
+  position: relative
+
+  &::after
+    content: ''
+    display: block
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    z-index: 98
+    background: rgba(#fff, 0.6)
+
+
+  &::before
+    content: ''
+    display: block
+    position: absolute
+    z-index: 99
+    width: 40px
+    height: 40px
+    margin-left: -20px
+    margin-top: -20px
+    top: 50%
+    left: 50%
+    background: url(#{$urlBaseImages}images/panel/loading.gif) #fff no-repeat center center
+
+.ui.form.success
+  .ui.error.message
+    display: none !important
+
+//INVOICE PAGE
+.invoice
+  margin-left: 0
+  margin-right: 0
+
+  .invoice-col
+    p
+      //margin-bottom: 0
+  .invoice-title
+    border-bottom: 1px solid #999
+    padding-bottom: 4px
+    margin-bottom: 0.5em
+
+
+//MODAL
+.modal
+  text-align: center
+  padding: 0!important
+
+  &:before
+    content: ''
+    display: inline-block
+    height: 100%
+    vertical-align: middle
+    margin-right: -4px
+
+  &-dialog
+    display: inline-block
+    text-align: left
+    vertical-align: middle
+
+@media (min-width: 768px)
+  .modal-sm
+    width: 400px
+
+//BOOTBOX JS
+.bootbox
+  &.danger
+    background: rgba($colorDanger, 0.6)
+
+@media print
+  .content-wrapper,
+  .right-side,
+  .main-footer
+    margin-left: 230px !important
+    left: -230px
+    position: relative
+    width: 100%
+
+  .invoice-col
+    width: 50%
+
+  .box-actions
+    display: none
+
+  a:after
+    display: none !important
+
+//FINE UPLOADER
+.custom-fine-uploader
+  margin-bottom: 30px
+  
+  .qq-upload-status-text
+    margin-top: 10px
+    font-size: 12px
+    font-weight: normal
+    
+  .qq-upload-spinner
+    position: absolute
+    z-index: 10
+    width: 40px
+    height: 40px
+    left: 50%
+    top: 50%
+    margin: -20px auto auto -20px
+    opacity: 0.7
+
+    border-radius: 4px
+
+    background: url(#{$urlBaseImages}images/panel/loading.gif) #fff no-repeat center center
+
+  .qq-uploader
+    max-height: none
+
+  .qq-upload-list
+    max-height: none
+
+    li
+      position: relative
+      
+      &.qq-upload-success
+        background: #EBF5FB
+        border-top-color: #f7f7f7
+        border-bottom-color: #ccc
+
+  .qq-gallery
+    .qq-upload-button
+      width: 160px
+

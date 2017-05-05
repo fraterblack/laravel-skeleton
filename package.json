@@ -1,0 +1,29 @@
+{
+  "name": "lpf",
+  "version": "1.0.2",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "prod": "gulp --production",
+    "dev": "gulp watch"
+  },
+  "private": true,
+  "dependencies": {
+  },
+  "devDependencies": {
+    "browser-sync": "^2.16.0",
+    "gulp": "^3.9.1",
+    "gulp-shell": "^0.5.2",
+    "jshint": "^2.9.2",
+    "laravel-elixir": "^6.0.0-11",
+    "laravel-elixir-browsersync-official": "^1.0.0",
+    "lodash": "^4.16.2",
+    "lodash.merge": "^4.6.0",
+    "lodash.mergewith": "^4.6.0",
+    "require-dir": "^0.3.1",
+    "run-sequence": "^1.2.2",
+    "yargs": "^6.0.3"
+  },
+  "author": "Agência Nueva",
+  "license": "ISC"
+}

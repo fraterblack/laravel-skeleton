@@ -1,0 +1,149 @@
+{
+  "libs": {
+    "styles" : {
+      "public/css/panel/components.css" : [
+        "./resources/assets/vendor/bower/semantic-ui-message/message.min.css",
+        "./resources/assets/vendor/bower/semantic-ui-segment/segment.min.css",
+        "./resources/assets/vendor/bower/bootstrap-daterangepicker/daterangepicker.css",
+        "./resources/assets/vendor/bower/AdminLTE/dist/css/AdminLTE.min.css",
+        "./resources/assets/vendor/bower/iCheck/skins/square/blue.css",
+        "./resources/assets/vendor/bower/iCheck/skins/line/blue.css",
+        "./resources/assets/vendor/bower/fancybox/source/jquery.fancybox.css",
+        "./resources/assets/vendor/bower/AdminLTE/plugins/colorpicker/bootstrap-colorpicker.min.css"
+      ],
+      "public/css/panel/components-2.css" : [
+        "./resources/assets/vendor/bower/AdminLTE/bootstrap/css/bootstrap.min.css",
+        "./resources/assets/vendor/bower/AdminLTE/dist/css/skins/skin-yellow.min.css",
+        "./resources/assets/vendor/bower/AdminLTE/plugins/datatables/dataTables.bootstrap.css",
+        "./resources/assets/vendor/bower/AdminLTE/plugins/select2/select2.min.css",
+        "./resources/assets/vendor/bower/semantic-ui-message/message.min.css",
+        "./resources/assets/vendor/bower/notifyjs/dist/styles/metro/notify-metro.css"
+      ],
+      "public/css/panel/file-uploader-component.css" : [
+        "./resources/assets/vendor/bower/fine-uploader/dist/fine-uploader.min.css",
+        "./resources/assets/vendor/bower/fine-uploader/dist/fine-uploader-new.min.css"
+      ]
+    },
+
+    "scripts" : {
+      "public/js/panel/components.js" : [
+        "./resources/assets/vendor/bower/bootbox.js/bootbox.js",
+        "./resources/assets/vendor/bower/semantic-ui-form/form.min.js",
+        "./resources/assets/vendor/bower/iCheck/icheck.min.js",
+        "./resources/assets/vendor/bower/fancybox/source/jquery.fancybox.js",
+        "./resources/assets/vendor/bower/speakingurl/speakingurl.min.js",
+        "./resources/assets/vendor/bower/jquery.stringtoslug/dist/jquery.stringtoslug.min.js"
+      ],
+      "public/js/panel/components-2.js" : [
+        "./resources/assets/vendor/bower/AdminLTE/plugins/jQuery/jquery-2.2.3.min.js",
+        "./resources/assets/vendor/bower/AdminLTE/bootstrap/js/bootstrap.min.js",
+        "./resources/assets/vendor/bower/AdminLTE/plugins/colorpicker/bootstrap-colorpicker.min.js"
+      ],
+      "public/js/panel/components-3.js" : [
+        "./resources/assets/vendor/bower/AdminLTE/dist/js/app.min.js",
+        "./resources/assets/vendor/bower/AdminLTE/plugins/datatables/jquery.dataTables.min.js",
+        "./resources/assets/vendor/bower/AdminLTE/plugins/datatables/dataTables.bootstrap.min.js",
+        "./resources/assets/vendor/bower/AdminLTE/plugins/select2/select2.full.min.js",
+        "./resources/assets/vendor/bower/AdminLTE/plugins/select2/i18n/pt-BR.js",
+        "./resources/assets/vendor/bower/notifyjs/dist/notify.js",
+        "./resources/assets/vendor/bower/notifyjs/dist/styles/metro/notify-metro.js"
+      ],
+      "public/js/panel/components-4.js" : [
+        "./resources/assets/vendor/bower/jquery-mask-plugin/dist/jquery.mask.min.js",
+        "./resources/assets/vendor/bower/jquery-maskmoney/dist/jquery.maskMoney.min.js",
+        "./resources/assets/vendor/bower/moment/moment.js",
+        "./resources/assets/vendor/bower/bootstrap-daterangepicker/daterangepicker.js",
+        "./resources/assets/vendor/bower/jmHighlight/dist/jquery.jmHighlight.min.js"
+      ],
+      "public/js/panel/sortable-component.js" : [
+        "./resources/assets/vendor/jquery-ui-1.12.1.custom/jquery-ui.min.js"
+      ],
+      "public/js/panel/file-uploader-component.js" : [
+        "./resources/assets/vendor/bower/fine-uploader/dist/fine-uploader.min.js"
+      ],
+      "public/js/panel/marketing-components.js" : [
+        "./resources/assets/vendor/bower/semantic-ui-transition/transition.js",
+        "./resources/assets/vendor/bower/semantic-ui-dropdown/dropdown.min.js",
+        "./resources/assets/vendor/bower/semantic-ui-api/api.min.js"
+      ]
+    },
+
+    "copy" : {
+      "public/fonts" : [
+        "resources/assets/vendor/bower/AdminLTE/bootstrap/fonts"
+      ],
+      "public/vendor/AdminLTE/colorpicker/img" : [
+        "resources/assets/vendor/bower/AdminLTE/plugins/colorpicker/img"
+      ],
+      "public/vendor/iCheck/skins" : [
+        "resources/assets/vendor/bower/iCheck/skins"
+      ],
+      "public/vendor/tinymce" : [
+        "resources/assets/vendor/tinymce"
+      ],
+      "public/vendor/fine-uploader/placeholders" : [
+        "resources/assets/vendor/bower/fine-uploader/dist/placeholders/not_available-generic.png",
+        "resources/assets/vendor/bower/fine-uploader/dist/placeholders/waiting-generic.png"
+      ]
+    }
+  },
+
+  "images" : {
+    "public/images/panel" : [
+      "./resources/assets/images/panel"
+    ],
+    "public/images/shared" : [
+      "./resources/assets/images/shared"
+    ]
+  },
+
+  "sass" : {
+    "resources/assets/css/panel/style.css" : [
+      "./resources/assets/sass/panel/style.sass"
+    ],
+    "resources/assets/css/panel/catalog.css" : [
+      "./resources/assets/sass/panel/catalog.sass"
+    ],
+    "resources/assets/css/panel/editor.css" : [
+      "./resources/assets/sass/panel/editor.sass"
+    ]
+  },
+
+  "styles" : {
+    "public/css/panel/general.css" : [
+      "./resources/assets/css/panel/style.css"
+    ],
+    "public/css/panel/catalog.css" : [
+      "./resources/assets/css/panel/catalog.css"
+    ],
+    "public/css/panel/editor.css" : [
+      "./resources/assets/css/panel/editor.css"
+    ]
+  },
+
+  "scripts" : {
+    "public/js/panel/general.js" : [
+      "./resources/assets/javascript/panel/masks.js",
+      "./resources/assets/javascript/panel/validations.js",
+      "./resources/assets/javascript/panel/general.js"
+    ],
+    "public/js/panel/banner.js" : [
+      "./resources/assets/javascript/panel/banner.js"
+    ],
+    "public/js/panel/catalog.js" : [
+      "./resources/assets/javascript/panel/catalog.js",
+      "./resources/assets/javascript/panel/catalog_categories.js",
+      "./resources/assets/javascript/panel/catalog_products.js"
+    ],
+    "public/js/panel/sales.js" : [
+      "./resources/assets/javascript/panel/sales.js",
+      "./resources/assets/javascript/panel/sales_orders.js",
+      "./resources/assets/javascript/panel/sales_shipping.js",
+      "./resources/assets/javascript/panel/sales_rewards.js"
+    ],
+    "public/js/panel/marketing.js" : [
+      "./resources/assets/javascript/panel/marketing.js",
+      "./resources/assets/javascript/panel/marketing_coupons.js"
+    ]
+  }
+}
