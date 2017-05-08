@@ -69,7 +69,7 @@ return [
     /*
      * Super User role name
      */
-    'superuser_role' => 'admin',
+    'superuser_role' => 'master',
 
     /*
      * js var name

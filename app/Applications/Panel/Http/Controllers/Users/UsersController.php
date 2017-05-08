@@ -10,16 +10,13 @@ use Artesaos\Defender\Contracts\Repositories\RoleRepository;
 use Artesaos\Defender\Role;
 use Illuminate\Http\Request;
 
-/**
- * @Controller(prefix="admin/usuarios")
- */
 class UsersController extends BaseController
 {
     /**
      * ACL Permission name
-     * @var array
+     * @var array|null
      */
-    private $requiredPermissions = [ 'admin.users' ];
+    protected $requiredPermissions = ['admin.users'];
 
     /**
      * Page name
@@ -33,23 +30,18 @@ class UsersController extends BaseController
     function __construct(Request $request,
                          UserRepository $userRepository)
     {
-        $this->userHasPermission($this->requiredPermissions);
-
         parent::__construct();
 
         $this->request = $request;
         $this->userRepository = $userRepository;
 
-        view()->share('section', 'users');
+        view()->share('section', 'acl');
+        view()->share('section_item', 'users');
     }
 
-    /**
-     * @Get("", as="panel::users.index")
-     * @Post("", as="panel::users.index")
-     */
     public function index()
     {
-        $users = $this->userRepository->index($this->request,  ['id', 'name', 'active', 'created_at']);
+        $users = $this->userRepository->index($this->request,  ['*']);
         $users = $this->userRepository->loadModelRelations($users, [
             'roles'
         ]);
@@ -59,21 +51,15 @@ class UsersController extends BaseController
         ]);
     }
 
-    /**
-     * @Get("cadastrar", as="panel::users.create")
-     */
     public function create(RoleRepository $roleRepository)
     {
         $roles = $roleRepository->getList('name', 'id');
 
-        return $this->view('users.create', [
+        return $this->view('panel::acl.users.create', [
             'roles' => $roles
         ]);
     }
 
-    /**
-     * @Post("cadastrar", as="panel::users.store")
-     */
     public function store(StoreUserRequest $request, RoleRepository $roleRepository)
     {
         $request->merge([ 'password' => bcrypt($request->get('password')) ]);
@@ -88,31 +74,24 @@ class UsersController extends BaseController
                     $newUser->attachRole($role);
                 }
             }
-
-            return redirect()->route(($request->has('redirect_to_list')) ? 'panel::users.index' : 'panel::users.create')->with('success', 'Cadastrado com sucesso!');
+            return redirect()->route(($request->has('redirect_to_list')) ? 'admin.users.index' : 'admin.users.create')->with('success', 'Cadastrado com sucesso!');
         }
 
         return back()->withInput()->with('error', 'Houve um erro!');
     }
 
-    /**
-     * @Get("{id}/editar", as="panel::users.edit", where={"id": "[0-9]+"})
-     */
     public function edit($id, RoleRepository $roleRepository)
     {
         $roles = $roleRepository->getList('name', 'id');
 
         $user = $this->userRepository->findByID($id);
 
-        return $this->view('users.edit', [
+        return $this->view('panel::acl.users.edit', [
             'roles' => $roles,
             'user' => $user
         ]);
     }
 
-    /**
-     * @Put("{id}/editar", as="panel::users.update")
-     */
     public function update($id, UpdateUserRequest $request)
     {
         $user = $this->userRepository->findByID($id);
@@ -126,21 +105,14 @@ class UsersController extends BaseController
         }
 
         if ($this->userRepository->update($user, $attributes)) {
-            return redirect()->to($request->input('last_url', route('panel::users.index')))->with('success', 'Editado com sucesso!');
+            return redirect()->to($request->input('last_url', route('admin.users.index')))->with('success', 'Editado com sucesso!');
         }
 
         return back()->withInput()->with('error', 'Houve um erro!');
     }
 
-    /**
-     * @Get("{id}/excluir", as="panel::users.delete", where={"id": "[0-9]+"})
-     */
     public function delete($id)
     {
-        if ($id == 1) { //Não permite que usuário 1 (webmaster) seja excluído
-            app()->abort(403);
-        }
-
         $this->userRepository->deleteById($id);
 
         return back();

@@ -1,4 +1,4 @@
-@extends('panel::general.pages.base')
+@extends('panel::cms.pages.base')
 
 @section('content')
 

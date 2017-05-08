@@ -22,16 +22,26 @@ class DefenderRolesSeeder extends Seeder
 
         //DEFENDER ACL
         //Cria as funções dos usuários
+        $master = Defender::createRole('master'); //master
+
+        $masterPermission = Defender::createPermission('master', 'Tem acesso a todos os recursos do painel');
+        $master->attachPermission([ $masterPermission->id ]);
+
         $admin = Defender::createRole('admin'); //admin
-        $moderator = Defender::createRole('moderator'); //moderator
 
-        //Permissões
-        $adminPermission =  Defender::createPermission('admin', 'Administrador');
-        $moderatorPermission =  Defender::createPermission('moderator', 'Moderador');
+        $adminPermissions = [
+            'admin' => 'Acessa o painel',
+            'admin.users' => 'Pode gerenciar usuários',
+            'admin.user_roles' => 'Pode gerenciar funções de usuário',
+            'admin.general.settings' => 'Pode acessar configurações',
+        ];
 
-        $admin->attachPermission([ $adminPermission->id, $moderatorPermission->id ]);
-        $moderator->attachPermission([ $moderatorPermission->id ]);
+        $adminPermissionIds = [];
+        foreach ($adminPermissions as $key=>$name) {
+            $createdPermission = Defender::createPermission($key, $name);
 
-        $interactSitePermission =  Defender::createPermission('interact.site', 'Interagir Site');
+            $adminPermissionIds[] = $createdPermission->id;
+        }
+        $admin->attachPermission($adminPermissionIds);
     }
 }

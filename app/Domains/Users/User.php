@@ -11,11 +11,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Lpf\Domains\Users\Notifications\ResetPassword as ResetPasswordNotification;
 use Lpf\Domains\Users\Presenters\UserPresenter;
+use Lpf\Support\Domain\Model\DeletableTrait;
 use Lpf\Support\ViewPresenter\PresentableTrait;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
-    use Authenticatable, CanResetPassword, PresentableTrait, Notifiable, HasDefender;
+    use Authenticatable, CanResetPassword, PresentableTrait, Notifiable, HasDefender, DeletableTrait;
 
     protected $presenter = UserPresenter::class;
 
@@ -38,6 +39,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     protected $casts = [
         'active' => 'boolean'
     ];
+
+    protected $protectedIds = [1];
 
     /**
      * Send the password reset notification.

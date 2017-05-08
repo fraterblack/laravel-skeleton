@@ -7,6 +7,18 @@ use Lpf\Applications\Panel\Http\Controllers\BaseController;
 
 class DashboardController extends BaseController
 {
+    /**
+     * ACL Permission name
+     * @var array|null
+     */
+    protected $requiredPermissions = null;
+
+    /**
+     * Page name
+     * @var string
+     */
+    protected $pageName = 'Painel Administrativo';
+
     protected $request;
 
     function __construct(Request $request)
@@ -15,7 +27,6 @@ class DashboardController extends BaseController
 
         $this->request = $request;
 
-        $this->setSeo([ 'title' => 'Principais Estatísticas' ]);
         view()->share('section', 'dashboard');
     }
 

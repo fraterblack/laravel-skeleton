@@ -1,4 +1,4 @@
-@extends('panel::general.contactRecipients.base')
+@extends('panel::cms.banners.base')
 
 @section('content')
 
@@ -7,18 +7,18 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Editar Destinatário de Contato/h3>
+                    <h3 class="box-title">Editar Local de Banner</h3>
                 </div>
                 <div class="box-body">
                     <div class="box-actions">
-                        <a href="{{ route('admin.contactRecipients.index') }}" class="btn btn-default btn-xs btn-go-back"><i class="fa fa-arrow-left"></i> Voltar</a>
+                        <a href="{{ route('admin.banners.index') }}" class="btn btn-default btn-xs btn-go-back"><i class="fa fa-arrow-left"></i> Voltar</a>
                     </div>
 
-                    {!! Form::model($recipient, ['route' => ['admin.contactRecipients.update', $recipient->id], 'class' => 'has-validation ui form', 'method' => 'put', 'enctype' => 'multipart/form-data']) !!}
+                    {!! Form::model($banner, ['route' => ['admin.banners.update', $banner->id], 'class' => 'has-validation ui form', 'method' => 'put', 'enctype' => 'multipart/form-data']) !!}
 
                     {!! Form::hidden('last_url', URL::previous()) !!}
 
-                    @include('panel::general.contactRecipients._form')
+                    @include('panel::cms.banners._form')
 
                     <div class="form-group">
                         {!! Form::submit('Salvar Alterações', ['class' => 'btn btn-primary']) !!}

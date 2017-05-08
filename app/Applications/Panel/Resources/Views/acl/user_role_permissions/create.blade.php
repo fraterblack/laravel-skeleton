@@ -1,4 +1,4 @@
-@extends('panel::user_role_permissions.base')
+@extends('panel::acl.user_role_permissions.base')
 
 @section('content')
 
@@ -6,15 +6,15 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Cadastrar Novo Recurso</h3>
+                    <h3 class="box-title">Cadastrar Nova Atribuição</h3>
                 </div>
                 <div class="box-body">
                     <div class="box-actions">
-                        <a href="{{ route('panel::user_role_permissions.index') }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-left"></i> Voltar à Lista</a>
+                        <a href="{{ route('admin.user_role_permissions.index') }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-left"></i> Voltar à Lista</a>
                     </div>
-                    {!! Form::open(['route' => 'panel::user_role_permissions.store', 'class' => 'has-validation ui form']) !!}
+                    {!! Form::open(['route' => 'admin.user_role_permissions.store', 'class' => 'has-validation ui form']) !!}
 
-                    @include('panel::user_role_permissions._form')
+                    @include('panel::acl.user_role_permissions._form')
 
                     <div class="form-group">
                         {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}

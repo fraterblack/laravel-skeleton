@@ -1,4 +1,4 @@
-@extends('panel::general.contactRecipients.base')
+@extends('panel::cms.bannerPlaces.base')
 
 @section('content')
 
@@ -6,15 +6,15 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Cadastrar Novo Destinatário de Contato</h3>
+                    <h3 class="box-title">Cadastrar Novo Local de Banner</h3>
                 </div>
                 <div class="box-body">
                     <div class="box-actions">
-                        <a href="{{ route('admin.contactRecipients.index') }}" class="btn btn-default btn-xs btn-go-back"><i class="fa fa-arrow-left"></i> Voltar</a>
+                        <a href="{{ route('admin.bannerPlaces.index') }}" class="btn btn-default btn-xs btn-go-back"><i class="fa fa-arrow-left"></i> Voltar</a>
                     </div>
-                    {!! Form::open(['route' => 'admin.contactRecipients.store', 'class' => 'has-validation ui form', 'enctype' => 'multipart/form-data']) !!}
+                    {!! Form::open(['route' => 'admin.bannerPlaces.store', 'class' => 'has-validation ui form', 'enctype' => 'multipart/form-data']) !!}
 
-                    @include('panel::general.contactRecipients._form')
+                    @include('panel::cms.bannerPlaces._form')
 
                     <div class="form-group">
                         {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}

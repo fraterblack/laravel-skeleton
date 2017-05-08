@@ -45,7 +45,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         (new Web([
-            'middleware' => ['web', 'auth', 'needsPermission:admin'],
+            'middleware' => ['web', 'auth'],
             'namespace'  => $this->namespace,
             'as'         => 'admin.',
             'prefix'     => 'admin',

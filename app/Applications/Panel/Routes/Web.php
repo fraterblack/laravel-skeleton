@@ -25,13 +25,15 @@ class Web extends RouteFile
 
         //Users
         $this->usersRoutes();
+        $this->userRolesRoutes();
+        $this->userPermissionsRoutes();
 
         //CMS
-        $this->pagesRoutes();
-        $this->bannerPlacesRoutes();
-        $this->bannersRoutes();
-        $this->contactRecipientsRoutes();
-        $this->contactsRoutes();
+        //$this->pagesRoutes();
+        //$this->bannerPlacesRoutes();
+        //$this->bannersRoutes();
+        //$this->contactRecipientsRoutes();
+        //$this->contactsRoutes();
     }
 
     protected function generalRoutes()
@@ -41,6 +43,139 @@ class Web extends RouteFile
             'uses' => 'General\DashboardController@initial',
             'as' => 'initial',
         ]);
+    }
+
+    protected function usersRoutes()
+    {
+        //as: admin.users, prefix: admin/usuarios, namespace: \Lpf\Applications\Panel\Http\Controllers\Users
+        $this->router->group(['as' => 'users.', 'prefix' => 'usuarios', 'namespace' => 'Users'], function () {
+            $this->router->get('', [
+                'uses' => 'UsersController@index',
+                'as' => 'index',
+            ]);
+
+            $this->router->post('', [
+                'uses' => 'UsersController@index',
+                'as' => 'index',
+            ]);
+
+            $this->router->get('cadastrar', [
+                'uses' => 'UsersController@create',
+                'as' => 'create',
+            ]);
+
+            $this->router->post('cadastrar', [
+                'uses' => 'UsersController@store',
+                'as' => 'store',
+            ]);
+
+            $this->router->get('{id}/editar', [
+                'uses' => 'UsersController@edit',
+                'as' => 'edit',
+            ]);
+
+            $this->router->put('{id}/editar', [
+                'uses' => 'UsersController@update',
+                'as' => 'update',
+            ]);
+
+            $this->router->get('{id}/excluir', [
+                'uses' => 'UsersController@delete',
+                'as' => 'delete',
+            ]);
+
+            $this->router->get('busca/{output}/{query?}', [
+                'uses' => 'UsersController@search',
+                'as' => 'search',
+            ]);
+
+            $this->router->get('{id}', [
+                'uses' => 'UsersController@find',
+                'as' => 'find',
+            ]);
+        });
+    }
+
+    protected function userRolesRoutes()
+    {
+        //as: admin.user_roles, prefix: admin/usuarios/funcoes-de-usuario, namespace: \Lpf\Applications\Panel\Http\Controllers\Users
+        $this->router->group(['as' => 'user_roles.', 'prefix' => 'usuarios/funcoes-de-usuario', 'namespace' => 'Users'], function () {
+            $this->router->get('', [
+                'uses' => 'RolesController@index',
+                'as' => 'index',
+            ]);
+
+            $this->router->post('', [
+                'uses' => 'RolesController@index',
+                'as' => 'index',
+            ]);
+
+            $this->router->get('cadastrar', [
+                'uses' => 'RolesController@create',
+                'as' => 'create',
+            ]);
+
+            $this->router->post('cadastrar', [
+                'uses' => 'RolesController@store',
+                'as' => 'store',
+            ]);
+
+            $this->router->get('{id}/editar', [
+                'uses' => 'RolesController@edit',
+                'as' => 'edit',
+            ]);
+
+            $this->router->put('{id}/editar', [
+                'uses' => 'RolesController@update',
+                'as' => 'update',
+            ]);
+
+            $this->router->get('{id}/excluir', [
+                'uses' => 'RolesController@delete',
+                'as' => 'delete',
+            ]);
+
+            $this->router->get('{id}/gerenciar-recursos', [
+                'uses' => 'RolesController@editPermissions',
+                'as' => 'editPermissions',
+            ]);
+
+            $this->router->put('{id}/gerenciar-recursos', [
+                'uses' => 'RolesController@updatePermissions',
+                'as' => 'updatePermissions',
+            ]);
+        });
+    }
+
+    protected function userPermissionsRoutes()
+    {
+        //as: admin.user_role_permissions, prefix: admin/usuarios/recursos-de-funcao, namespace: \Lpf\Applications\Panel\Http\Controllers\Users
+        $this->router->group(['as' => 'user_role_permissions.', 'prefix' => 'usuarios/recursos-de-funcao', 'namespace' => 'Users'], function () {
+            $this->router->get('', [
+                'uses' => 'PermissionsController@index',
+                'as' => 'index',
+            ]);
+
+            $this->router->post('', [
+                'uses' => 'PermissionsController@index',
+                'as' => 'index',
+            ]);
+
+            $this->router->get('cadastrar', [
+                'uses' => 'PermissionsController@create',
+                'as' => 'create',
+            ]);
+
+            $this->router->post('cadastrar', [
+                'uses' => 'PermissionsController@store',
+                'as' => 'store',
+            ]);
+
+            $this->router->get('{id}/excluir', [
+                'uses' => 'PermissionsController@delete',
+                'as' => 'delete',
+            ]);
+        });
     }
 
     protected function utilsRoutes()
@@ -270,52 +405,6 @@ class Web extends RouteFile
             $this->router->get('{id}/desmarcar-como-respondido', [
                 'uses' => 'ContactsController@unmarkAsReplied',
                 'as' => 'unmarkAsReplied',
-            ]);
-        });
-    }
-
-    protected function usersRoutes()
-    {
-        //as: admin.users, prefix: admin/usuarios, namespace: \Lpf\Applications\Panel\Http\Controllers\Users
-        $this->router->group(['as' => 'users.', 'prefix' => 'usuarios', 'namespace' => 'Users'], function () {
-            $this->router->get('', [
-                'uses' => 'UsersController@index',
-                'as' => 'index',
-            ]);
-
-            $this->router->post('', [
-                'uses' => 'UsersController@index',
-                'as' => 'index',
-            ]);
-
-            $this->router->get('{id}/excluir', [
-                'uses' => 'UsersController@delete',
-                'as' => 'delete',
-            ]);
-
-            $this->router->get('{id}/confirmar-cadastro', [
-                'uses' => 'UsersController@confirmRegistration',
-                'as' => 'confirmRegistration',
-            ]);
-
-            $this->router->get('{id}/{role}/ligar-funcao', [
-                'uses' => 'UsersController@attachRole',
-                'as' => 'attachRole',
-            ]);
-
-            $this->router->get('{id}/{role}/desligar-funcao', [
-                'uses' => 'UsersController@detachRole',
-                'as' => 'detachRole',
-            ]);
-
-            $this->router->get('busca/{output}/{query?}', [
-                'uses' => 'UsersController@search',
-                'as' => 'search',
-            ]);
-
-            $this->router->get('{id}', [
-                'uses' => 'UsersController@find',
-                'as' => 'find',
             ]);
         });
     }

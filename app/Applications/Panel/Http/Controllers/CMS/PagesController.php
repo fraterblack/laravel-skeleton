@@ -33,14 +33,14 @@ class PagesController extends BaseController
     {
         $pages = $this->pageRepository->index($this->request, [ 'id', 'title', 'slug', 'active', 'created_at' ]);
 
-        return $this->view('panel::general.pages.index', [
+        return $this->view('panel::cms.pages.index', [
             "records" => $pages
         ]);
     }
 
     public function create()
     {
-        return $this->view('panel::general.pages.create');
+        return $this->view('panel::cms.pages.create');
     }
 
     public function store(StorePageRequest $request)
@@ -64,7 +64,7 @@ class PagesController extends BaseController
     {
         $page = $this->pageRepository->findByID($id);
 
-        return $this->view('panel::general.pages.edit', [ 'page' => $page ]);
+        return $this->view('panel::cms.pages.edit', [ 'page' => $page ]);
     }
 
     public function update($id, StorePageRequest $request)

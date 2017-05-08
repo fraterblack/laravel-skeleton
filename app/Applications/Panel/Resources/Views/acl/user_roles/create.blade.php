@@ -1,4 +1,4 @@
-@extends('panel::user_roles.base')
+@extends('panel::acl.user_roles.base')
 
 @section('content')
 
@@ -10,11 +10,11 @@
                 </div>
                 <div class="box-body">
                     <div class="box-actions">
-                        <a href="{{ route('panel::user_roles.index') }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-left"></i> Voltar à Lista</a>
+                        <a href="{{ route('admin.user_roles.index') }}" class="btn btn-default btn-xs btn-go-back"><i class="fa fa-arrow-left"></i> Voltar à Lista</a>
                     </div>
-                    {!! Form::open(['route' => 'panel::user_roles.store', 'class' => 'has-validation ui form']) !!}
+                    {!! Form::open(['route' => 'admin.user_roles.store', 'class' => 'has-validation ui form']) !!}
 
-                    @include('panel::user_roles._form')
+                    @include('panel::acl.user_roles._form')
 
                     <div class="form-group">
                         {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}

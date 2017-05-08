@@ -18,6 +18,8 @@ class BaseController extends Controller
     {
         parent::__construct();
 
+        $this->userHasPermission();
+
         $this->setPageTitle();
     }
 
@@ -45,18 +47,30 @@ class BaseController extends Controller
         return $this->itemsPerPage;
     }
 
-    final protected function userHasPermission(array $permissions = null)
+    final protected function userHasPermission()
     {
-        //Obligatory to all users that access panel
-        $this->middleware('auth');
+        $this->requiredPermissionsAttributeIsValid();
 
         //Defender ACL
-        if ($permissions) {
-            foreach ($permissions as $permission) {
+        if ($this->requiredPermissions !== null) {
+            foreach ($this->requiredPermissions as $permission) {
                 $this->middleware('needsPermission:' . config('defender.superuser_role') . '|' . $permission . ',true');
             }
         } else {
             $this->middleware('needsPermission:' . config('defender.superuser_role') . '|admin,true');
         }
+    }
+
+    final protected function requiredPermissionsAttributeIsValid()
+    {
+        if (! property_exists($this, 'requiredPermissions')) {
+            throw new \InvalidArgumentException('O atributo requiredPermissions não está presente no controller');
+        }
+
+        if ($this->requiredPermissions !== null && ! is_array($this->requiredPermissions)) {
+            throw new \InvalidArgumentException('O atributo requiredPermissions deve ser um array ou ser nulo');
+        }
+
+        return true;
     }
 }

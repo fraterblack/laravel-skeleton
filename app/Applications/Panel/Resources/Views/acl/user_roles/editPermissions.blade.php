@@ -1,4 +1,4 @@
-@extends('panel::user_roles.base')
+@extends('panel::acl.user_roles.base')
 
 @section('content')
 
@@ -11,7 +11,7 @@
                 </div>
                 <div class="box-body">
                     <div class="box-actions">
-                        <a href="{{ route('panel::user_roles.index') }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-left"></i> Voltar à Lista</a>
+                        <a href="{{ route('admin.user_roles.index') }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-left"></i> Voltar à Lista</a>
                     </div>
 
                     <div class="box-header with-border">
@@ -19,12 +19,12 @@
                     </div>
                     <div class="box-body">
 
-                        {!! Form::model($role, ['route' => ['panel::user_roles.updatePermissions', $role->id], 'class' => 'has-validation ui form', 'method' => 'put' ]) !!}
+                        {!! Form::model($role, ['route' => ['admin.user_roles.updatePermissions', $role->id], 'class' => 'has-validation ui form', 'method' => 'put' ]) !!}
 
                         {!! Form::hidden('last_url', URL::previous()) !!}
                         <?php
                             $permissions = $permissions->sortBy('name');
-                            $selectedPermissions = $role->permissions->lists('id')->toArray();
+                            $selectedPermissions = $role->permissions->pluck('id')->toArray();
                         ?>
                         @foreach($permissions as $permission)
                             <div class="row">

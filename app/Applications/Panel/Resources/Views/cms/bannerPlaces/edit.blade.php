@@ -1,4 +1,4 @@
-@extends('panel::general.banners.base')
+@extends('panel::cms.bannerPlaces.base')
 
 @section('content')
 
@@ -11,14 +11,14 @@
                 </div>
                 <div class="box-body">
                     <div class="box-actions">
-                        <a href="{{ route('admin.banners.index') }}" class="btn btn-default btn-xs btn-go-back"><i class="fa fa-arrow-left"></i> Voltar</a>
+                        <a href="{{ route('admin.bannerPlaces.index') }}" class="btn btn-default btn-xs btn-go-back"><i class="fa fa-arrow-left"></i> Voltar</a>
                     </div>
 
-                    {!! Form::model($banner, ['route' => ['admin.banners.update', $banner->id], 'class' => 'has-validation ui form', 'method' => 'put', 'enctype' => 'multipart/form-data']) !!}
+                    {!! Form::model($place, ['route' => ['admin.bannerPlaces.update', $place->id], 'class' => 'has-validation ui form', 'method' => 'put', 'enctype' => 'multipart/form-data']) !!}
 
                     {!! Form::hidden('last_url', URL::previous()) !!}
 
-                    @include('panel::general.banners._form')
+                    @include('panel::cms.bannerPlaces._form')
 
                     <div class="form-group">
                         {!! Form::submit('Salvar Alterações', ['class' => 'btn btn-primary']) !!}

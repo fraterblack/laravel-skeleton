@@ -10,9 +10,9 @@
                 </div>
                 <div class="box-body">
                     <div class="box-actions">
-                        <a href="{{ route('admin.acl.users.index') }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-left"></i> Voltar à Lista</a>
+                        <a href="{{ route('admin.users.index') }}" class="btn btn-default btn-xs btn-go-back"><i class="fa fa-arrow-left"></i> Voltar à Lista</a>
                     </div>
-                    {!! Form::open(['route' => 'admin.acl.users.store', 'class' => 'has-validation ui form']) !!}
+                    {!! Form::open(['route' => 'admin.users.store', 'class' => 'has-validation ui form']) !!}
 
                     @include('panel::acl.users._form')
 

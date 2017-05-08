@@ -1,4 +1,4 @@
-@extends('panel::general.bannerPlaces.base')
+@extends('panel::cms.pages.base')
 
 @section('content')
 
@@ -7,18 +7,18 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Editar Local de Banner</h3>
+                    <h3 class="box-title">Editar a Página</h3>
                 </div>
                 <div class="box-body">
                     <div class="box-actions">
-                        <a href="{{ route('admin.bannerPlaces.index') }}" class="btn btn-default btn-xs btn-go-back"><i class="fa fa-arrow-left"></i> Voltar</a>
+                        <a href="{{ route('admin.pages.index') }}" class="btn btn-default btn-xs btn-go-back"><i class="fa fa-arrow-left"></i> Voltar</a>
                     </div>
 
-                    {!! Form::model($place, ['route' => ['admin.bannerPlaces.update', $place->id], 'class' => 'has-validation ui form', 'method' => 'put', 'enctype' => 'multipart/form-data']) !!}
+                    {!! Form::model($page, ['route' => ['admin.pages.update', $page->id], 'class' => 'has-validation ui form', 'method' => 'put' ]) !!}
 
                     {!! Form::hidden('last_url', URL::previous()) !!}
 
-                    @include('panel::general.bannerPlaces._form')
+                    @include('panel::cms.pages._form')
 
                     <div class="form-group">
                         {!! Form::submit('Salvar Alterações', ['class' => 'btn btn-primary']) !!}

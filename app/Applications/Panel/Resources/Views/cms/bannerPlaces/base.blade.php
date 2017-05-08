@@ -2,7 +2,7 @@
 
 @section('contentWrapper')
 
-    @include('panel::general.pages._partial.header')
+    @include('panel::cms.bannerPlaces._partial.header')
 
     <section class="content">
         @include('panel::_partial.messages')

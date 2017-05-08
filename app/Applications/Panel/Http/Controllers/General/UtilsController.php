@@ -9,6 +9,12 @@ use Lpf\Applications\Panel\Http\Controllers\BaseController;
 
 class UtilsController extends BaseController
 {
+    /**
+     * ACL Permission name
+     * @var array|null
+     */
+    protected $requiredPermissions = ['admin.general.settings'];
+
     protected $request;
     protected $app;
 

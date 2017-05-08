@@ -7,16 +7,13 @@ use Artesaos\Defender\Contracts\Repositories\PermissionRepository;
 use Artesaos\Defender\Contracts\Repositories\RoleRepository;
 use Illuminate\Http\Request;
 
-/**
- * @Controller(prefix="admin/permissoes/funcoes-de-usuario")
- */
 class RolesController extends BaseController
 {
     /**
      * ACL Permission name
-     * @var array
+     * @var array|null
      */
-    private $requiredPermissions = [ 'admin.user_roles' ];
+    protected $requiredPermissions = ['admin.user_roles'];
 
     /**
      * Page name
@@ -27,8 +24,8 @@ class RolesController extends BaseController
     protected $request;
     protected $roleRepository;
     function __construct(Request $request,
-                         RoleRepository $roleRepository)
-    {
+                         RoleRepository $roleRepository
+    ) {
         $this->userHasPermission($this->requiredPermissions);
 
         parent::__construct();
@@ -36,74 +33,56 @@ class RolesController extends BaseController
         $this->request = $request;
         $this->roleRepository = $roleRepository;
 
-        view()->share('section', 'user_roles');
+        view()->share('section', 'acl');
+        view()->share('section_item', 'user_roles');
     }
 
-    /**
-     * @Get("", as="panel::user_roles.index")
-     * @Post("", as="panel::user_roles.index")
-     */
     public function index()
     {
         $roles = $this->roleRepository->paginate();
 
-        return $this->view('user_roles.index', [
+        return $this->view('panel::acl.user_roles.index', [
             "records" => $roles
         ]);
     }
 
-    /**
-     * @Get("cadastrar", as="panel::user_roles.create")
-     */
     public function create()
     {
-        return $this->view('user_roles.create');
+        return $this->view('panel::acl.user_roles.create');
     }
 
-    /**
-     * @Post("cadastrar", as="panel::user_roles.store")
-     */
     public function store()
     {
         $role = $this->roleRepository->create($this->request->get('name'));
 
         if ($role) {
-            return redirect()->route(($this->request->has('redirect_to_list')) ? 'panel::user_roles.index' : 'panel::user_roles.create')->with('success', 'Cadastrado com sucesso!');
+            return redirect()->route(($this->request->has('redirect_to_list')) ? 'admin.user_roles.index' : 'admin.user_roles.create')->with('success', 'Cadastrado com sucesso!');
         }
 
         return back()->withInput()->with('error', 'Houve um erro!');
     }
 
-    /**
-     * @Get("{id}/editar", as="panel::user_roles.edit", where={"id": "[0-9]+"})
-     */
     public function edit($id)
     {
         $role = $this->roleRepository->findById($id);
 
-        return $this->view('user_roles.edit', [
+        return $this->view('panel::acl.user_roles.edit', [
             'role' => $role
         ]);
     }
 
-    /**
-     * @Put("{id}/editar", as="panel::user_roles.update")
-     */
     public function update($id)
     {
         $role = $this->roleRepository->findById($id);
         $role->name = $this->request->get('name');
 
         if ($role->save()) {
-            return redirect()->to($this->request->input('last_url', route('panel::user_roles.index')))->with('success', 'Editado com sucesso!');
+            return redirect()->to($this->request->input('last_url', route('admin.user_roles.index')))->with('success', 'Editado com sucesso!');
         }
 
         return back()->withInput()->with('error', 'Houve um erro!');
     }
 
-    /**
-     * @Get("{id}/excluir", as="panel::user_roles.delete", where={"id": "[0-9]+"})
-     */
     public function delete($id)
     {
         $role = $this->roleRepository->findById($id);
@@ -118,12 +97,9 @@ class RolesController extends BaseController
         return back();
     }
 
-    /**
-     * @Get("{id}/gerenciar-recursos", as="panel::user_roles.editPermissions", where={"id": "[0-9]+"})
-     */
     public function editPermissions($id,
-                                    PermissionRepository $permissionRepository)
-    {
+                                    PermissionRepository $permissionRepository
+    ) {
         $role = $this->roleRepository->findById($id);
 
         //Não permite alterar "master"
@@ -135,18 +111,15 @@ class RolesController extends BaseController
 
         $role->load([ 'permissions' ]);
 
-        return $this->view('user_roles.editPermissions', [
+        return $this->view('panel::acl.user_roles.editPermissions', [
             'role' => $role,
             'permissions' => $permissions
         ]);
     }
 
-    /**
-     * @Put("{id}/gerenciar-recursos", as="panel::user_roles.updatePermissions", where={"id": "[0-9]+"})
-     */
     public function updatePermissions($id,
-                                      PermissionRepository $permissionRepository)
-    {
+                                      PermissionRepository $permissionRepository
+    ) {
         $role = $this->roleRepository->findById($id);
 
         if ($role) {

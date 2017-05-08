@@ -1,4 +1,4 @@
-@extends('panel::acl.user_roles.base')
+@extends('panel::cms.contactRecipients.base')
 
 @section('content')
 
@@ -7,18 +7,18 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Editar Função</h3>
+                    <h3 class="box-title">Editar Destinatário de Contato/h3>
                 </div>
                 <div class="box-body">
                     <div class="box-actions">
-                        <a href="{{ route('admin.user_roles.index') }}" class="btn btn-default btn-xs btn-go-back"><i class="fa fa-arrow-left"></i> Voltar à Lista</a>
+                        <a href="{{ route('admin.contactRecipients.index') }}" class="btn btn-default btn-xs btn-go-back"><i class="fa fa-arrow-left"></i> Voltar</a>
                     </div>
 
-                    {!! Form::model($role, ['route' => ['admin.user_roles.update', $role->id], 'class' => 'has-validation ui form', 'method' => 'put' ]) !!}
+                    {!! Form::model($recipient, ['route' => ['admin.contactRecipients.update', $recipient->id], 'class' => 'has-validation ui form', 'method' => 'put', 'enctype' => 'multipart/form-data']) !!}
 
                     {!! Form::hidden('last_url', URL::previous()) !!}
 
-                    @include('panel::acl.user_roles._form')
+                    @include('panel::cms.contactRecipients._form')
 
                     <div class="form-group">
                         {!! Form::submit('Salvar Alterações', ['class' => 'btn btn-primary']) !!}

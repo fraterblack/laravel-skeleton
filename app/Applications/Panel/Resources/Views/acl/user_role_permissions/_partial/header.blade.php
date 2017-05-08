@@ -1,3 +1,3 @@
 <section class="content-header">
-    <h1>Recursos de Função</h1>
+    <h1>Atribuições de Função</h1>
 </section>

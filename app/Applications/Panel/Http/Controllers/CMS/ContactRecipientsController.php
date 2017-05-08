@@ -30,13 +30,13 @@ class ContactRecipientsController extends BaseController
     {
         $contactRecipients = $this->contactRecipientRepository->index($this->request, ['id', 'name', 'email', 'active', 'created_at']);
 
-        return $this->view('panel::general.contactRecipients.index', [
+        return $this->view('panel::cms.contactRecipients.index', [
             "records" => $contactRecipients]);
     }
 
     public function create()
     {
-        return $this->view('panel::general.contactRecipients.create');
+        return $this->view('panel::cms.contactRecipients.create');
     }
 
     public function store(StoreContactRecipientRequest $request)
@@ -54,7 +54,7 @@ class ContactRecipientsController extends BaseController
     {
         $recipient = $this->contactRecipientRepository->findByID($id);
 
-        return $this->view('panel::general.contactRecipients.edit', [
+        return $this->view('panel::cms.contactRecipients.edit', [
             'recipient' => $recipient
         ]);
     }

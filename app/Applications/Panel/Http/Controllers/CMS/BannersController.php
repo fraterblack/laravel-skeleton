@@ -43,14 +43,14 @@ class BannersController extends BaseController
             'place'
         ]);
 
-        return $this->view('panel::general.banners.index', [
+        return $this->view('panel::cms.banners.index', [
             "records" => $banners
         ]);
     }
 
     public function create()
     {
-        return $this->view('panel::general.banners.create', [
+        return $this->view('panel::cms.banners.create', [
             'places' => $this->bannerPlaceRepository->getAll(['*'], false, false),
             'types' => $this->bannerPlaceRepository->getAvailableTypes()
         ]);
@@ -75,7 +75,7 @@ class BannersController extends BaseController
     {
         $banner = $this->bannerRepository->findByID($id);
 
-        return $this->view('panel::general.banners.edit', [
+        return $this->view('panel::cms.banners.edit', [
             'banner' => $banner,
             'places' => $this->bannerPlaceRepository->getAll(['*'], false, false),
             'types' => $this->bannerPlaceRepository->getAvailableTypes()

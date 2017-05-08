@@ -2,7 +2,7 @@
 
 @section('contentWrapper')
 
-    @include('panel::general.users._partial.header')
+    @include('panel::cms.banners._partial.header')
 
     <section class="content">
         @include('panel::_partial.messages')
@@ -10,3 +10,7 @@
     </section>
 
 @endsection
+
+@push('foot_extend')
+    <script src="{{ elixir('js/panel/banner.js') }}"></script>
+@endpush

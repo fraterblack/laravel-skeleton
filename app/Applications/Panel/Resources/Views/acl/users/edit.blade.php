@@ -11,10 +11,10 @@
                 </div>
                 <div class="box-body">
                     <div class="box-actions">
-                        <a href="{{ route('admin.acl.users.index') }}" class="btn btn-default btn-xs"><i class="fa fa-arrow-left"></i> Voltar à Lista</a>
+                        <a href="{{ route('admin.users.index') }}" class="btn btn-default btn-xs btn-go-back"><i class="fa fa-arrow-left"></i> Voltar à Lista</a>
                     </div>
 
-                    {!! Form::model($user, ['route' => ['admin.acl.users.update', $user->id], 'class' => 'has-validation ui form', 'method' => 'put' ]) !!}
+                    {!! Form::model($user, ['route' => ['admin.users.update', $user->id], 'class' => 'has-validation ui form', 'method' => 'put' ]) !!}
 
                     {!! Form::hidden('last_url', URL::previous()) !!}
 

@@ -1,4 +1,4 @@
-@extends('panel::general.pages.base')
+@extends('panel::cms.banners.base')
 
 @section('content')
 
@@ -6,15 +6,15 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Cadastrar Nova Página</h3>
+                    <h3 class="box-title">Cadastrar Novo Local de Banner</h3>
                 </div>
                 <div class="box-body">
                     <div class="box-actions">
-                        <a href="{{ route('admin.pages.index') }}" class="btn btn-default btn-xs btn-go-back"><i class="fa fa-arrow-left"></i> Voltar</a>
+                        <a href="{{ route('admin.banners.index') }}" class="btn btn-default btn-xs btn-go-back"><i class="fa fa-arrow-left"></i> Voltar</a>
                     </div>
-                    {!! Form::open(['route' => 'admin.pages.store', 'class' => 'has-validation ui form']) !!}
+                    {!! Form::open(['route' => 'admin.banners.store', 'class' => 'has-validation ui form', 'enctype' => 'multipart/form-data']) !!}
 
-                    @include('panel::general.pages._form')
+                    @include('panel::cms.banners._form')
 
                     <div class="form-group">
                         {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}

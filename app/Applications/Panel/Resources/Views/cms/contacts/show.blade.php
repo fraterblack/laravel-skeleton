@@ -1,4 +1,4 @@
-@extends('panel::general.contacts.base')
+@extends('panel::cms.contacts.base')
 
 @section('content')
 

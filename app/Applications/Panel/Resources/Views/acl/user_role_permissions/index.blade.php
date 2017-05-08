@@ -1,4 +1,4 @@
-@extends('panel::user_role_permissions.base')
+@extends('panel::acl.user_role_permissions.base')
 
 @section('content')
 
@@ -7,11 +7,11 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Lista de Recursos</h3>
+                    <h3 class="box-title">Lista de Atribuições</h3>
                 </div>
                 <div class="box-body">
                     <div class="box-actions">
-                        <a href="{{ route('panel::user_role_permissions.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Cadastrar Novo Recurso</a>
+                        <a href="{{ route('admin.user_role_permissions.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Cadastrar Nova Atribuição</a>
                     </div>
 
                     <table class="table table-bordered table-striped">
@@ -31,7 +31,7 @@
                                 <td>{{ $permission->readable_name }}</td>
                                 <td class="text-center">
                                     @if($permission->name != config('defender.superuser_role') && $permission->name != 'admin')
-                                        <a class="btn btn-danger btn-xs" href="{{ route('panel::user_role_permissions.delete', $permission->id) }}" data-confirm="true" data-confirm-danger="true"><i class="fa fa-trash"></i></a>
+                                        <a class="btn btn-danger btn-xs" href="{{ route('admin.user_role_permissions.delete', $permission->id) }}" data-confirm="true" data-confirm-danger="true"><i class="fa fa-trash"></i></a>
                                     @endif
                                 </td>
                             </tr>

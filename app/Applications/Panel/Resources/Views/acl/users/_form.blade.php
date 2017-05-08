@@ -7,12 +7,6 @@
 </div>
 <div class="row">
     <div class="field required form-group col-md-6">
-        {!! Form::label('username', 'Username') !!}
-        {!! Form::text('username', null, [ 'class' => 'form-control', 'data-rule' => 'empty' ]) !!}
-    </div>
-</div>
-<div class="row">
-    <div class="field required form-group col-md-6">
         {!! Form::label('email', 'E-mail') !!}
         {!! Form::text('email', null, [ 'class' => 'form-control', 'data-rule' => 'empty||email' ]) !!}
     </div>
@@ -22,11 +16,11 @@
     <div class="row">
         <div class="field required form-group col-md-3">
             {!! Form::label('password', 'Senha') !!}
-            {!! Form::text('password', '', [ 'class' => 'form-control', 'data-rule' => 'empty||minLength[6]' ]) !!}
+            {!! Form::password('password', [ 'class' => 'form-control', 'data-rule' => 'empty||minLength[6]' ]) !!}
         </div>
         <div class="field required form-group col-md-3">
             {!! Form::label('password_confirmation', 'Confirme a Senha') !!}
-            {!! Form::text('password_confirmation', '', [ 'class' => 'form-control', 'data-rule' => 'empty||match[password]', 'data-rule-prompt' => '||Senha e confirmação não combinam' ]) !!}
+            {!! Form::password('password_confirmation', [ 'class' => 'form-control', 'data-rule' => 'empty||match[password]', 'data-rule-prompt' => '||Senha e confirmação não combinam' ]) !!}
         </div>
     </div>
 @else
@@ -42,11 +36,11 @@
         <div class="row">
             <div class="field required form-group col-md-3">
                 {!! Form::label('password', 'Senha') !!}
-                {!! Form::text('password', '', [ 'class' => 'form-control', 'data-rule-optional' => 'true', 'data-rule' => 'minLength[6]' ]) !!}
+                {!! Form::password('password', [ 'class' => 'form-control', 'data-rule-optional' => 'true', 'data-rule' => 'minLength[6]' ]) !!}
             </div>
             <div class="field required form-group col-md-3">
                 {!! Form::label('password_confirmation', 'Confirme a Senha') !!}
-                {!! Form::text('password_confirmation', '', [ 'class' => 'form-control', 'data-rule' => 'match[password]', 'data-rule-prompt' => '||Senha e confirmação não combinam' ]) !!}
+                {!! Form::password('password_confirmation', [ 'class' => 'form-control', 'data-rule' => 'match[password]', 'data-rule-prompt' => '||Senha e confirmação não combinam' ]) !!}
             </div>
         </div>
     </div>

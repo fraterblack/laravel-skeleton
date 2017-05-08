@@ -1,4 +1,4 @@
-@extends('panel::general.banners.base')
+@extends('panel::cms.banners.base')
 
 @section('content')
 

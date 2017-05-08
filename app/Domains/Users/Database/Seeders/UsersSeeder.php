@@ -5,6 +5,7 @@ namespace Lpf\Domains\Users\Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Lpf\Domains\Users\User;
+use Artesaos\Defender\Facades\Defender;
 
 /**
  * Class UsersSeeders.
@@ -28,11 +29,14 @@ class UsersSeeder extends Seeder
             'active' => 1
         ]);
 
-        //Permissões
-        $adminRole = \Artesaos\Defender\Facades\Defender::findRole('admin');
+        //ACL
+        $masterRole = Defender::findRole('master');
+        //$adminRole = \Artesaos\Defender\Facades\Defender::findRole('admin');
 
         //Atribua permissões ao super usuário
-        $superUser->attachRole($adminRole);
+        $superUser = User::find(1);
+        $superUser->attachRole($masterRole);
+        //$superUser->attachRole($adminRole);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

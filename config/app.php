@@ -194,7 +194,7 @@ return [
         Lpf\Domains\Shared\Providers\DomainServiceProvider::class,
         Lpf\Domains\Location\Providers\DomainServiceProvider::class,
         Lpf\Domains\Users\Providers\DomainServiceProvider::class,
-        Lpf\Domains\CMS\Providers\DomainServiceProvider::class,
+        //Lpf\Domains\CMS\Providers\DomainServiceProvider::class,
 
         /*
          * Applications Service Providers...
