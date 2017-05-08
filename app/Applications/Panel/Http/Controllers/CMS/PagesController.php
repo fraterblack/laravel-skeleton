@@ -12,6 +12,18 @@ class PagesController extends BaseController
 {
     use SlugHelpersTrait;
 
+    /**
+     * ACL Permission name
+     * @var array|null
+     */
+    protected $requiredPermissions = ['admin.pages'];
+
+    /**
+     * Page name
+     * @var string
+     */
+    protected $pageName = 'Páginas';
+
     protected $request;
     protected $pageRepository;
 
@@ -20,10 +32,10 @@ class PagesController extends BaseController
     ) {
         parent::__construct();
 
+        $this->userHasPermission();
+
         $this->request = $request;
         $this->pageRepository = $pageRepository;
-
-        $this->setSeo([ 'title' => 'Páginas' ]);
 
         view()->share('section', 'cms');
         view()->share('section_item', 'pages');

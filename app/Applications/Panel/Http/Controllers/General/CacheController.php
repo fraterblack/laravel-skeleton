@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Lpf\Applications\Panel\Http\Controllers\BaseController;
 
-class UtilsController extends BaseController
+class CacheController extends BaseController
 {
     /**
      * ACL Permission name

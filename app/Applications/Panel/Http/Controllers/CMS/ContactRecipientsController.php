@@ -9,6 +9,18 @@ use Lpf\Domains\CMS\Contracts\ContactRecipientRepository;
 
 class ContactRecipientsController extends BaseController
 {
+    /**
+     * ACL Permission name
+     * @var array|null
+     */
+    protected $requiredPermissions = ['admin.contact.recipients'];
+
+    /**
+     * Page name
+     * @var string
+     */
+    protected $pageName = 'Destinatários de Contato';
+
     protected $request;
     protected $contactRecipientRepository;
 
@@ -17,10 +29,10 @@ class ContactRecipientsController extends BaseController
     ) {
         parent::__construct();
 
+        $this->userHasPermission();
+
         $this->request = $request;
         $this->contactRecipientRepository = $contactRecipientRepository;
-
-        $this->setSeo(['title' => 'Contatos']);
 
         view()->share('section', 'configurations');
         view()->share('section_item', 'contactRecipients');

@@ -12,6 +12,18 @@ class ContactsController extends BaseController
 {
     use IndexMethodsTrait;
 
+    /**
+     * ACL Permission name
+     * @var array|null
+     */
+    protected $requiredPermissions = ['admin.contacts'];
+
+    /**
+     * Page name
+     * @var string
+     */
+    protected $pageName = 'Contatos';
+
     protected $request;
     protected $contactRecipientRepository;
     protected $contactRepository;
@@ -22,11 +34,11 @@ class ContactsController extends BaseController
     ) {
         parent::__construct();
 
+        $this->userHasPermission();
+
         $this->request = $request;
         $this->contactRecipientRepository = $contactRecipientRepository;
         $this->contactRepository = $contactRepository;
-
-        $this->setSeo(['title' => 'Contato']);
 
         view()->share('section', 'cms');
         view()->share('section_item', 'contacts');

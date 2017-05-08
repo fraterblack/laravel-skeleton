@@ -21,7 +21,7 @@ class Web extends RouteFile
         $this->router->pattern('id', '[0-9]+');
 
         $this->generalRoutes();
-        $this->utilsRoutes();
+        $this->cacheRoutes();
 
         //Users
         $this->usersRoutes();
@@ -29,11 +29,11 @@ class Web extends RouteFile
         $this->userPermissionsRoutes();
 
         //CMS
-        //$this->pagesRoutes();
-        //$this->bannerPlacesRoutes();
-        //$this->bannersRoutes();
-        //$this->contactRecipientsRoutes();
-        //$this->contactsRoutes();
+        $this->pagesRoutes();
+        $this->bannerPlacesRoutes();
+        $this->bannersRoutes();
+        $this->contactRecipientsRoutes();
+        $this->contactsRoutes();
     }
 
     protected function generalRoutes()
@@ -178,17 +178,17 @@ class Web extends RouteFile
         });
     }
 
-    protected function utilsRoutes()
+    protected function cacheRoutes()
     {
         //as: admin.utils, prefix: admin/configuracoes, namespace: \Lpf\Applications\Panel\Http\Controllers\General
         $this->router->group(['as' => 'utils.', 'prefix' => 'configuracoes', 'namespace' => 'General'], function () {
             $this->router->get('controle-de-cache', [
-                'uses' => 'UtilsController@cacheControl',
+                'uses' => 'CacheController@cacheControl',
                 'as' => 'cacheControl',
             ]);
 
             $this->router->get('resultado-controle-de-cache', [
-                'uses' => 'UtilsController@cacheResult',
+                'uses' => 'CacheController@cacheResult',
                 'as' => 'cacheResult',
             ]);
         });

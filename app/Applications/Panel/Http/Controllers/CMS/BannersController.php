@@ -15,6 +15,18 @@ class BannersController extends BaseController
 {
     use HasAttacherTrait;
 
+    /**
+     * ACL Permission name
+     * @var array|null
+     */
+    protected $requiredPermissions = ['admin.banners'];
+
+    /**
+     * Page name
+     * @var string
+     */
+    protected $pageName = 'Banners';
+
     protected $request;
     protected $bannerPlaceRepository;
     protected $bannerRepository;
@@ -25,11 +37,11 @@ class BannersController extends BaseController
     ) {
         parent::__construct();
 
+        $this->userHasPermission();
+
         $this->request = $request;
         $this->bannerPlaceRepository = $bannerPlaceRepository;
         $this->bannerRepository = $bannerRepository;
-
-        $this->setSeo(['title' => 'Banners']);
 
         view()->share('section', 'cms');
         view()->share('section_item', 'banners');
