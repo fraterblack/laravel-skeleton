@@ -28,6 +28,8 @@ class PermissionsController extends BaseController
     {
         parent::__construct();
 
+        $this->userHasPermission();
+
         $this->request = $request;
         $this->permissionRepository = $permissionRepository;
 

@@ -32,6 +32,8 @@ class UsersController extends BaseController
     {
         parent::__construct();
 
+        $this->userHasPermission();
+
         $this->request = $request;
         $this->userRepository = $userRepository;
 

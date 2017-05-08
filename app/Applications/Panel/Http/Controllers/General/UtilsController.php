@@ -15,6 +15,12 @@ class UtilsController extends BaseController
      */
     protected $requiredPermissions = ['admin.general.settings'];
 
+    /**
+     * Page name
+     * @var string
+     */
+    protected $pageName = 'Controle de Cache - Configurações';
+
     protected $request;
     protected $app;
 
@@ -22,18 +28,17 @@ class UtilsController extends BaseController
     {
         parent::__construct();
 
+        $this->userHasPermission();
+
         $this->request = $request;
         $this->app = $app;
 
-        $this->setSeo([ 'title' => 'Configurações' ]);
         view()->share('section', 'configurations');
+        view()->share('section_item', 'cacheControl');
     }
 
     public function cacheControl()
     {
-        $this->setSeo([ 'title' => 'Controle de Cache' ]);
-        view()->share('section_item', 'cacheControl');
-
         if ($this->request->has('command')) {
             $command = null;
             $result = null;
@@ -107,9 +112,6 @@ class UtilsController extends BaseController
 
     public function cacheResult()
     {
-        $this->setSeo([ 'title' => 'Controle de Cache' ]);
-        view()->share('section_item', 'cacheControl');
-
         return $this->view('panel::general.utils.commandResult')->with([
             'command' => $this->request->session()->get('command'),
             'result' => $this->request->session()->get('result')

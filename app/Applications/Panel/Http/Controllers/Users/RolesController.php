@@ -26,9 +26,9 @@ class RolesController extends BaseController
     function __construct(Request $request,
                          RoleRepository $roleRepository
     ) {
-        $this->userHasPermission($this->requiredPermissions);
-
         parent::__construct();
+
+        $this->userHasPermission();
 
         $this->request = $request;
         $this->roleRepository = $roleRepository;

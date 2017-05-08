@@ -13,17 +13,13 @@ class DashboardController extends BaseController
      */
     protected $requiredPermissions = null;
 
-    /**
-     * Page name
-     * @var string
-     */
-    protected $pageName = 'Painel Administrativo';
-
     protected $request;
 
     function __construct(Request $request)
     {
         parent::__construct();
+
+        $this->userHasPermission();
 
         $this->request = $request;
 
