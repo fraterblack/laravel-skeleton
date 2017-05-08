@@ -107,6 +107,8 @@ class UsersController extends BaseController
         }
 
         if ($this->userRepository->update($user, $attributes)) {
+            $user->syncRoles($request->get('roles', []));
+            
             return redirect()->to($request->input('last_url', route('admin.users.index')))->with('success', 'Editado com sucesso!');
         }
 
