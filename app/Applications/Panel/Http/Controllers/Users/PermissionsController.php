@@ -19,7 +19,7 @@ class PermissionsController extends BaseController
      * Page name
      * @var string
      */
-    protected $pageName = 'Recursos de Função';
+    protected $pageName = 'Permissões de Usuários';
 
     protected $request;
     protected $permissionRepository;

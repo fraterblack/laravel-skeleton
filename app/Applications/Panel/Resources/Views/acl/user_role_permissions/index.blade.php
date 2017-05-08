@@ -7,11 +7,11 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Lista de Atribuições</h3>
+                    <h3 class="box-title">Lista de Permissões</h3>
                 </div>
                 <div class="box-body">
                     <div class="box-actions">
-                        <a href="{{ route('admin.user_role_permissions.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Cadastrar Nova Atribuição</a>
+                        <a href="{{ route('admin.user_role_permissions.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Cadastrar Nova Permissão</a>
                     </div>
 
                     <table class="table table-bordered table-striped">

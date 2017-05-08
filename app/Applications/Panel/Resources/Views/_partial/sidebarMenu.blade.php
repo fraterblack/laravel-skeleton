@@ -25,10 +25,10 @@
         @endshield
         @shield('admin.user_roles')
             <li class="treeview" data-section="acl">
-                <a href="#permissoes">Permissões <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#permissoes">Controle de Acesso <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li data-section-item="user_roles"><a href="{{ route('admin.user_roles.index') }}">Funções de Usuário</a></li>
-                    <li data-section-item="user_role_permissions"><a href="{{ route('admin.user_role_permissions.index') }}">Atribuições de Função</a></li>
+                    <li data-section-item="user_role_permissions"><a href="{{ route('admin.user_role_permissions.index') }}">Permissões</a></li>
                 </ul>
             </li>
         @endshield

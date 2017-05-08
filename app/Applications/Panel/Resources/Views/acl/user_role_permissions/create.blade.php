@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Cadastrar Nova Atribuição</h3>
+                    <h3 class="box-title">Cadastrar Nova Permissão</h3>
                 </div>
                 <div class="box-body">
                     <div class="box-actions">
