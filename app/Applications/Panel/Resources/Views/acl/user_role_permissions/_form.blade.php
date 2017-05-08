@@ -1,6 +1,6 @@
 <div class="ui error small message"></div>
 <div class="alert alert-warning">
-    Novoas atribuições só funcionarão após intervenção no código pelo programador.
+    Novas atribuições só funcionarão após intervenção no código pelo programador.
 </div>
 <div class="row">
     <div class="field required form-group col-md-4">
