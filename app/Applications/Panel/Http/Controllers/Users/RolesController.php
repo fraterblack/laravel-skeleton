@@ -26,9 +26,9 @@ class RolesController extends BaseController
     function __construct(Request $request,
                          RoleRepository $roleRepository
     ) {
-        parent::__construct();
 
-        $this->userHasPermission();
+        parent::__construct();
+        $this->userHasPermission($this->requiredPermissions);
 
         $this->request = $request;
         $this->roleRepository = $roleRepository;
@@ -109,7 +109,7 @@ class RolesController extends BaseController
 
         $permissions = $permissionRepository->all();
 
-        $role->load([ 'permissions' ]);
+        $role->load(['permissions']);
 
         return $this->view('panel::acl.user_roles.editPermissions', [
             'role' => $role,

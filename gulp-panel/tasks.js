@@ -161,7 +161,7 @@ gulp.task('panel-sass', function()  {
 /*********** WATCH *************/
 Elixir(function (mix) {
     mix.browserSync({
-        proxy: 'https://artees.app',
+        proxy: 'http://lpf.app',
         //logLevel: "debug|info|silent",
         logFileChanges: false,
         reloadOnRestart: true

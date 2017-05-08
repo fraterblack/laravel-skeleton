@@ -16,6 +16,22 @@
 
                     @include('panel::acl.user_role_permissions._form')
 
+                    <div class="row">
+                        <div class="field form-group col-xs-12">
+                            <label>Atribuir à:</label><br>
+                        @foreach($user_roles as $role)
+                            @if($role->id == 1)
+                                @continue
+                            @endif
+                            <div class="form-group">
+                                <label>
+                                    {!! Form::checkbox('sync_permission_with[]', $role->id, null, [ 'class' => 'custom-checkbox' ]) !!} {{ $role->name }}
+                                </label>
+                            </div>
+                        @endforeach
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}
 

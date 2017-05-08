@@ -32,7 +32,16 @@ $(window).ready(function(){
     //Seta token
     setAjaxCSRFTokenHeader($('body').data('token'));
 
-    //CONFIRMAÇÃO DE AÇÃO - Pergunda antes de continuar
+    //ESCONDE MENU COM SUBMENUS VAZIOS
+    $('.main-sidebar .treeview-menu').each(function () {
+        var menu = $(this);
+
+        if (! menu.find('li')[0]) {
+            menu.parents('.treeview').remove();
+        }
+    });
+
+    //CONFIRMAÇÃO DE AÇÃO - Pergunta antes de continuar
     $('body').on('click', '[data-confirm="true"]', function(e) {
         var $button = $(this);
 
