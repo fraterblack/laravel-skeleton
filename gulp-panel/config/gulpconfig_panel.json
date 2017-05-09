@@ -60,11 +60,6 @@
       ],
       "public/js/panel/file-uploader-component.js" : [
         "./resources/assets/vendor/bower/fine-uploader/dist/fine-uploader.min.js"
-      ],
-      "public/js/panel/marketing-components.js" : [
-        "./resources/assets/vendor/bower/semantic-ui-transition/transition.js",
-        "./resources/assets/vendor/bower/semantic-ui-dropdown/dropdown.min.js",
-        "./resources/assets/vendor/bower/semantic-ui-api/api.min.js"
       ]
     },
 
@@ -101,9 +96,6 @@
     "resources/assets/css/panel/style.css" : [
       "./resources/assets/sass/panel/style.sass"
     ],
-    "resources/assets/css/panel/catalog.css" : [
-      "./resources/assets/sass/panel/catalog.sass"
-    ],
     "resources/assets/css/panel/editor.css" : [
       "./resources/assets/sass/panel/editor.sass"
     ]
@@ -112,9 +104,6 @@
   "styles" : {
     "public/css/panel/general.css" : [
       "./resources/assets/css/panel/style.css"
-    ],
-    "public/css/panel/catalog.css" : [
-      "./resources/assets/css/panel/catalog.css"
     ],
     "public/css/panel/editor.css" : [
       "./resources/assets/css/panel/editor.css"
@@ -129,21 +118,6 @@
     ],
     "public/js/panel/banner.js" : [
       "./resources/assets/javascript/panel/banner.js"
-    ],
-    "public/js/panel/catalog.js" : [
-      "./resources/assets/javascript/panel/catalog.js",
-      "./resources/assets/javascript/panel/catalog_categories.js",
-      "./resources/assets/javascript/panel/catalog_products.js"
-    ],
-    "public/js/panel/sales.js" : [
-      "./resources/assets/javascript/panel/sales.js",
-      "./resources/assets/javascript/panel/sales_orders.js",
-      "./resources/assets/javascript/panel/sales_shipping.js",
-      "./resources/assets/javascript/panel/sales_rewards.js"
-    ],
-    "public/js/panel/marketing.js" : [
-      "./resources/assets/javascript/panel/marketing.js",
-      "./resources/assets/javascript/panel/marketing_coupons.js"
     ]
   }
 }
