@@ -13,7 +13,4 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
-
-    #RewriteRule ^uploads/(.*)\/?$ http://192.168.0.124/lpf/public/uploads/$1 [L]
-    #RewriteRule ^filemanager/(.*)\/?$ http://192.168.0.124/lpf/public/filemanager/$1 [L]
 </IfModule>
