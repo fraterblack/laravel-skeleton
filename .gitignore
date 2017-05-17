@@ -9,7 +9,6 @@ public/filemanager/files
 public/filemanager/files
 public/build
 resources/assets/css/site/*
-public/.htaccess
 
 /vendor
 /node_modules
