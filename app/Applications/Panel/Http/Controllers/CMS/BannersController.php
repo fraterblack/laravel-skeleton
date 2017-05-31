@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Lpf\Applications\Infrastructure\Http\Requests\CMS\StoreBannerRequest;
 use Lpf\Applications\Infrastructure\Http\Requests\CMS\UpdateBannerRequest;
 use Lpf\Applications\Infrastructure\Traits\HasAttacherTrait;
+use Lpf\Applications\Infrastructure\Traits\IndexMethodsTrait;
 use Lpf\Applications\Panel\Http\Controllers\BaseController;
 use Lpf\Domains\CMS\BannerPlace;
 use Lpf\Domains\CMS\Contracts\BannerPlaceRepository;
@@ -13,7 +14,7 @@ use Lpf\Domains\CMS\Contracts\BannerRepository;
 
 class BannersController extends BaseController
 {
-    use HasAttacherTrait;
+    use HasAttacherTrait, IndexMethodsTrait;
 
     /**
      * ACL Permission name
@@ -55,8 +56,11 @@ class BannersController extends BaseController
             'place'
         ]);
 
+        $this->createIndexFilter('Localização', 'banner_place_id', '=', false, $this->bannerPlaceRepository->dataForSelect()->toArray());
+
         return $this->view('panel::cms.banners.index', [
-            "records" => $banners
+            "records" => $banners,
+            'filters' => $this->getIndexFilters()
         ]);
     }
 
@@ -98,13 +102,18 @@ class BannersController extends BaseController
     {
         $banner = $this->bannerRepository->findByID($id);
 
+        if ($request->file('image')) {
+            $this->deleteImages($banner);
+
+            $this->attachImage($banner, $request);
+
+            //Força o update do model
+            $request->merge([
+                'name' => $banner->name . ' '
+            ]);
+        }
+
         if ($this->bannerRepository->update($banner, $request->all())) {
-            if ($request->file('image')) {
-                $this->deleteImages($banner);
-
-                $this->attachImage($banner, $request);
-            }
-
             return redirect()->to($request->input('last_url', route('admin.banners.index')))->with('success', 'Editado com sucesso!');
         }
 
@@ -148,20 +157,21 @@ class BannersController extends BaseController
             $this->addImage($banner, $request->file('image'), [
                 'banner' => [
                     'normal' => function ($image) use ($bannerPlace) {
-                        $image->fit($bannerPlace->width, $bannerPlace->height);
+                        if ($bannerPlace->width <= 0) {
+                            $image->heighten($bannerPlace->height);
+                        } elseif ($bannerPlace->height <= 0) {
+                            $image->widen($bannerPlace->width);
+                        } else {
+                            $image->fit($bannerPlace->width, $bannerPlace->height);
+                        }
+
                         return $image;
                     }
                 ]
             ]);
         } elseif ($banner->type == BannerPlace::TYPE_GIF) {
-            $this->addImage($banner, $request->file('image'), [
-                'banner' => [
-                    'normal' => function ($image) use ($bannerPlace) {
-                        $image->fit($bannerPlace->width, $bannerPlace->height);
-                        return $image;
-                    }
-                ]
-            ]);
+            //Quando do tipo GIF, as dimensões usadas serão as definidas como padrão. Uma vez que a image será sobrescrita
+            $this->addImage($banner, $request->file('image'), 'banner');
 
             $request->file('image')->storeAs(
                 'uploads/images/' . $banner->image->id . '/normal', $banner->image->file_name

@@ -52,7 +52,7 @@ class ContactsController extends BaseController
             'recipient'
         ]);
 
-        $this->createIndexFilter('Destinatário', 'contact_recipient_id', '=', true, $this->contactRecipientRepository->lists('name', 'id')->toArray());
+        $this->createIndexFilter('Destinatário', 'contact_recipient_id', '=', false, $this->contactRecipientRepository->lists('name', 'id')->toArray());
 
         return $this->view('panel::cms.contacts.index', [
             "records" => $contacts,

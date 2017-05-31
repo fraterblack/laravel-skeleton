@@ -30,7 +30,7 @@
                             <tr data-item-id="{{ $place->id }}" class="{{ ($place->active) ? '' : 'danger' }}">
                                 <td>{{ $place->id }}</td>
                                 <td>{{ $place->name }}</td>
-                                <td>{{ $place->width }}x{{ $place->height }}px</td>
+                                <td>{{ ($place->width > 0) ? $place->width : '---' }}x{{ ($place->height > 0) ? $place->height : '---' }} pixels</td>
                                 <td class="text-center">
                                     @include('panel::_components.toggleActivationButtons', ['active' => $place->active, 'deactivate_route' => route('admin.bannerPlaces.deactivate', $place->id), 'activate_route' => route('admin.bannerPlaces.activate', $place->id)])
                                     @include('panel::_components.editButton', ['route' => route('admin.bannerPlaces.edit', $place->id)])

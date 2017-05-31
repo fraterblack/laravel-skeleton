@@ -22,18 +22,20 @@
                                 <th data-column="name">Nome</th>
                                 <th data-column="type">Tipo</th>
                                 <th data-column="type">Localização</th>
-                                <th data-column="created_at">Disponível A partir</th>
+                                <th data-column="availability_from">De</th>
+                                <th data-column="availability_to">Até</th>
                                 <th class="text-center">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach($records as $banner)
-                            <tr data-item-id="{{ $banner->id }}" class="{{ ($banner->active) ? ($banner->created_at > date('Y-m-d H:i:s') ? ' text-info' : '') : ' danger' }}">
+                            <tr data-item-id="{{ $banner->id }}" class="{{ ($banner->active) ? '' : 'danger' }}">
                                 <td>{{ $banner->id }}</td>
                                 <td>{{ $banner->name }}</td>
                                 <td>{{ $banner->present()->typeName() }}</td>
                                 <td>{{ $banner->place->name }}</td>
-                                <td>{{ $banner->present()->creationDate('d/m/Y H:i \h\s') }}</td>
+                                <td{!! $banner->availability_from > date('Y-m-d H:i:s') ? ' class="text-info"' : '' !!}>{{ $banner->present()->availabilityFromDate() }}</td>
+                                <td{!! $banner->availability_to < date('Y-m-d H:i:s') ? ' class="text-danger"' : '' !!}>{{ $banner->present()->availabilityToDate() }}</td>
                                 <td class="text-center">
                                     @include('panel::_components.toggleActivationButtons', ['active' => $banner->active, 'deactivate_route' => route('admin.banners.deactivate', $banner->id), 'activate_route' => route('admin.banners.activate', $banner->id)])
                                     @include('panel::_components.editButton', ['route' => route('admin.banners.edit', $banner->id)])

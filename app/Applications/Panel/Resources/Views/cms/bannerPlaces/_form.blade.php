@@ -44,13 +44,19 @@
 </div>
 
 <div class="row">
-    <div class="field required form-group col-xs-6 col-sm-4 col-md-3 col-lg-2">
+    <div class="field form-group col-xs-6 col-sm-4 col-md-3 col-lg-2">
         {!! Form::label('width', 'Largura') !!}
-        {!! Form::text('width', null, [ 'class' => 'form-control mask-number', 'data-rule' => 'empty' ]) !!}
+        {!! Form::text('width', (!empty($place) && $place->width > 0 ? null : ''), ['class' => 'form-control mask-number']) !!}
     </div>
-    <div class="field required form-group col-xs-6 col-sm-4 col-md-3 col-lg-2">
+    <div class="field form-group col-xs-6 col-sm-4 col-md-3 col-lg-2">
         {!! Form::label('height', 'Altura') !!}
-        {!! Form::text('height', null, [ 'class' => 'form-control mask-number', 'data-rule' => 'empty' ]) !!}
+        {!! Form::text('height', (!empty($place) && $place->height > 0 ? null : ''), ['class' => 'form-control mask-number']) !!}
+    </div>
+    <div class="field form-group col-xs-12 col-sm-4 col-md-6 col-lg-8">
+        <p class="help-block">
+            <strong>Importante:</strong><br>
+            Ao menos uma das dimensões deve ser informada. Informe uma das medidas para redimensionamento adaptivo. Se ambas as dimensões forem preenchidas, o banner terá exatamente a medida informada.
+        </p>
     </div>
 </div>
 <div class="row">

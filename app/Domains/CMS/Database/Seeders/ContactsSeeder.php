@@ -18,7 +18,7 @@ class ContactsSeeder extends Seeder
 
         \Lpf\Domains\CMS\ContactRecipient::create([
             'name' => 'Contato',
-            'email' => 'edvaldo@agencianueva.com.br',
+            'email' => 'teste@teste.com.br',
             'active' => 1
         ]);
     }

@@ -54,6 +54,7 @@ class DomainServiceProvider extends ServiceProvider
         Migrations\CreateContactRecipientsTable::class,
         Migrations\CreateContactsTable::class,
         Migrations\AddRandColumnInBannerPlacesTable::class,
+        Migrations\AddAvailabilitiesColumnsInBannersTable::class,
     ];
 
     /**

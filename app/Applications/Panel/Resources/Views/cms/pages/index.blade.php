@@ -34,7 +34,10 @@
                                 <td class="text-center">
                                     @include('panel::_components.toggleActivationButtons', ['active' => $page->active, 'deactivate_route' => route('admin.pages.deactivate', $page->id), 'activate_route' => route('admin.pages.activate', $page->id)])
                                     @include('panel::_components.editButton', ['route' => route('admin.pages.edit', $page->id)])
-                                    @include('panel::_components.deleteButton', ['route' => route('admin.pages.delete', $page->id)])
+                                    @include('panel::_components.deleteButton', [
+                                        'route' => route('admin.pages.delete', $page->id),
+                                        'disable' => ! $page->deletable(),
+                                    ])
                                 </td>
                             </tr>
                         @endforeach

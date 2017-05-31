@@ -25,7 +25,7 @@
                         <li><a href="{{ route('admin.utils.cacheControl', ['command' => 'clear_compiled']) }}">Limpar Compilado</a></li>
                     </ul>
                     <ul>
-                        <li><a href="{{ route('admin.utils.cacheControl', ['command' => 'cache_clear']) }}">Limpar Cache de Queries</a></li>
+                        <li><a href="{{ route('admin.utils.cacheControl', ['command' => 'cache_clear']) }}">Limpar Cache</a></li>
                     </ul>
                     <ul>
                         <li><a href="{{ route('admin.utils.cacheControl', ['command' => 'view_clear']) }}">Limpar Cache de Views</a></li>
