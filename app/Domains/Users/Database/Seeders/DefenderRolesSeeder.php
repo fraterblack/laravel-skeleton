@@ -42,6 +42,8 @@ class DefenderRolesSeeder extends Seeder
             'admin.pages' => 'Pode gerenciar páginas',
             'admin.contact.recipients' => 'Pode gerenciar destinatários de contatos',
             'admin.contacts' => 'Pode gerenciar contatos',
+            'admin.banners' => 'Pode gerenciar banners',
+            'admin.banners.places' => 'Pode gerenciar locais de banners',
         ];
 
         $adminPermissionIds = [];

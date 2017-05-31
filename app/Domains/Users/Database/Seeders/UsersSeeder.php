@@ -21,22 +21,19 @@ class UsersSeeder extends Seeder
 
         DB::table('users')->truncate();
 
-        //Usuário Administrador
+        //Usuário Master
         $superUser = User::create([
-            'name' => 'Edvaldo da Rosa',
-            'email' => 'contato@bck.com.br',
+            'name' => 'Usuário Teste',
+            'email' => 'teste@teste.com.br',
             'password' => bcrypt('123456'),
             'active' => 1
         ]);
 
         //ACL
         $masterRole = Defender::findRole('master');
-        //$adminRole = \Artesaos\Defender\Facades\Defender::findRole('admin');
 
-        //Atribua permissões ao super usuário
-        $superUser = User::find(1);
+        //Atribue permissão master para o super usuário (Primeiro usuário)
         $superUser->attachRole($masterRole);
-        //$superUser->attachRole($adminRole);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
