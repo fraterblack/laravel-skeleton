@@ -9,6 +9,8 @@ use Lpf\Domains\Users\Contracts\UserRepository;
 use Artesaos\Defender\Contracts\Repositories\RoleRepository;
 use Artesaos\Defender\Role;
 use Illuminate\Http\Request;
+use Lpf\Domains\Users\Events\NewUserEvent;
+use Lpf\Domains\Users\Events\UpdatedUserEvent;
 
 class UsersController extends BaseController
 {
@@ -64,6 +66,8 @@ class UsersController extends BaseController
 
     public function store(StoreUserRequest $request, RoleRepository $roleRepository)
     {
+        $newPassword = $request->get('password');
+
         $request->merge([ 'password' => bcrypt($request->get('password')) ]);
 
         $newUser = $this->userRepository->create($request->all());
@@ -76,6 +80,9 @@ class UsersController extends BaseController
                     $newUser->attachRole($role);
                 }
             }
+
+            event(new NewUserEvent($newUser, $newPassword));
+
             return redirect()->route(($request->has('redirect_to_list')) ? 'admin.users.index' : 'admin.users.create')->with('success', 'Cadastrado com sucesso!');
         }
 
@@ -98,6 +105,8 @@ class UsersController extends BaseController
     {
         $user = $this->userRepository->findByID($id);
 
+        $newPassword = $request->get('password', null);
+
         if (!empty($request->get('password'))) {
             $request->merge([ 'password' => bcrypt($request->get('password')) ]);
 
@@ -108,7 +117,9 @@ class UsersController extends BaseController
 
         if ($this->userRepository->update($user, $attributes)) {
             $user->syncRoles($request->get('roles', []));
-            
+
+            event(new UpdatedUserEvent($user, $newPassword));
+
             return redirect()->to($request->input('last_url', route('admin.users.index')))->with('success', 'Editado com sucesso!');
         }
 

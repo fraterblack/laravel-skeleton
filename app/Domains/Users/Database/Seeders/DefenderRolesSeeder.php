@@ -32,8 +32,16 @@ class DefenderRolesSeeder extends Seeder
         $adminPermissions = [
             'admin' => 'Acessa o painel',
             'admin.users' => 'Pode gerenciar usuários',
-            'admin.user_roles' => 'Pode gerenciar funções de usuário',
+            'admin.user_roles' => 'Pode gerenciar permissões de usuário',
             'admin.general.settings' => 'Pode acessar configurações',
+            'admin.galleries.albums' => 'Pode gerenciar álbuns',
+            'admin.galleries.types' => 'Pode gerenciar tipos de álbuns',
+            'admin.galleries.partners' => 'Pode gerenciar parceiros',
+            'admin.banners' => 'Pode gerenciar banners',
+            'admin.banners.places' => 'Pode gerenciar locais de banners',
+            'admin.pages' => 'Pode gerenciar páginas',
+            'admin.contact.recipients' => 'Pode gerenciar destinatários de contatos',
+            'admin.contacts' => 'Pode gerenciar contatos',
         ];
 
         $adminPermissionIds = [];

@@ -15,7 +15,7 @@
                     </div>
 
                     <div class="box-header with-border">
-                        <h4 class="box-title">Função: {{ $role->name }}</h4>
+                        <h4 class="box-title">Usuários com a função {{ $role->name }} podem:</h4>
                     </div>
                     <div class="box-body">
 

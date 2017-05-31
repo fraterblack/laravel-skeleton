@@ -13,7 +13,7 @@
             </td>
         </tr>
         <tr style="border: 0; color: #343434; font-size: 14px; font-weight: normal; line-height: 1.2; margin: 0; padding: 0;">
-            <td style="border: 0; color: #343434; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: normal; line-height: 1.2; margin: 0; padding: 22px;">
+            <td style="border: 0; color: #343434; font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight: normal; line-height: 1.5em; margin: 0; padding: 22px;">
                 @yield('email.content')
             </td>
         </tr>

@@ -29,7 +29,7 @@
                                 <td>{{ $role->name }}</td>
                                 <td>
                                     @if($role->name != config('defender.superuser_role'))
-                                        <a class="btn btn-default btn-sm" href="{{ route('admin.user_roles.editPermissions', $role->id) }}"><span class="fa fa-shield"></span> Vincular Permissões</a>
+                                        <a class="btn btn-primary btn-sm bg-navy" href="{{ route('admin.user_roles.editPermissions', $role->id) }}"><span class="fa fa-shield"></span> Gerenciar Permissões</a>
                                     @endif
                                     @if($role->name != config('defender.superuser_role') && $role->name != config('defender.superuser_role') && $role->name != 'admin')
                                         <a class="btn btn-primary btn-xs" href="{{ route('admin.user_roles.edit', $role->id) }}"><i class="fa fa-edit"></i></a>

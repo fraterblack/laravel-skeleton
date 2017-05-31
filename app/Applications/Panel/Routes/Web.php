@@ -94,6 +94,19 @@ class Web extends RouteFile
                 'as' => 'find',
             ]);
         });
+
+        //as: admin.myAccount, prefix: admin/meu-cadastro, namespace: \Lpf\Applications\Panel\Http\Controllers\Users
+        $this->router->group(['as' => 'myAccount.', 'prefix' => 'meu-cadastro', 'namespace' => 'Users'], function () {
+            $this->router->get('editar', [
+                'uses' => 'MyAccountController@edit',
+                'as' => 'edit',
+            ]);
+
+            $this->router->put('editar', [
+                'uses' => 'MyAccountController@update',
+                'as' => 'update',
+            ]);
+        });
     }
 
     protected function userRolesRoutes()

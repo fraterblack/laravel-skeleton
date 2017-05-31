@@ -44,7 +44,7 @@
                                     @endforeach
                                 </td>
                                 <td class="text-center">
-                                    @if($user->id != 1)
+                                    @if($user->deletable() || Auth::user()->id == $user->id)
                                         <a class="btn btn-primary btn-xs" href="{{ route('admin.users.edit', $user->id) }}"><i class="fa fa-edit"></i></a>
                                         <a class="btn btn-danger btn-xs" href="{{ route('admin.users.delete', $user->id) }}" data-confirm="true" data-confirm-danger="true"><i class="fa fa-trash"></i></a>
                                     @endif
