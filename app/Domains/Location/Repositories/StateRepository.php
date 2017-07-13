@@ -5,7 +5,7 @@ namespace Lpf\Domains\Location\Repositories;
 use Lpf\Domains\Location\Contracts\StateRepository as StateRepositoryContract;
 use Lpf\Domains\Location\State;
 use Lpf\Support\Domain\Repository\Repository;
-use Lpf\Support\Domain\Repository\RetrieveExtendedRepositoryTrait as RetrieveExtendedRepository;
+use Lpf\Support\Domain\Repository\Traits\RetrieveExtendedRepositoryTrait as RetrieveExtendedRepository;
 
 class StateRepository extends Repository implements StateRepositoryContract
 {

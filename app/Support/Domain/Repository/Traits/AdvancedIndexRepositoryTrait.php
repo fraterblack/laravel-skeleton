@@ -1,6 +1,6 @@
 <?php
 
-namespace Lpf\Support\Domain\Repository;
+namespace Lpf\Support\Domain\Repository\Traits;
 
 trait AdvancedIndexRepositoryTrait
 {
