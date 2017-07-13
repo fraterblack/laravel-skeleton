@@ -54,7 +54,7 @@ return [
     /*
      * Forbidden callback
      */
-    'forbidden_callback' => \Lpf\Applications\Infrastructure\Handlers\ForbiddenHandler::class,
+    'forbidden_callback' => \Lpf\Interfaces\Shared\Handlers\ForbiddenHandler::class,
 
     /*
      * Use blade template helpers

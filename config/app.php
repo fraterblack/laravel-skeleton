@@ -197,10 +197,10 @@ return [
         Lpf\Domains\CMS\Providers\DomainServiceProvider::class,
 
         /*
-         * Applications Service Providers...
+         * Interfaces Service Providers...
          */
-        Lpf\Applications\Panel\Providers\ApplicationServiceProvider::class,
-        Lpf\Applications\Site\Providers\ApplicationServiceProvider::class,
+        Lpf\Interfaces\Panel\Providers\InterfaceServiceProvider::class,
+        Lpf\Interfaces\Site\Providers\InterfaceServiceProvider::class,
     ],
 
     /*
