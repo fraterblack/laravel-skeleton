@@ -43,7 +43,7 @@ class BannerPlacesController extends BaseController
 
     public function index()
     {
-        $bannerPlaces = $this->bannerPlaceRepository->index($this->request, ['id', 'name', 'width', 'height', 'active', 'created_at']);
+        $bannerPlaces = $this->bannerPlaceRepository->index($this->request->toArray(), ['id', 'name', 'width', 'height', 'active', 'created_at']);
 
         return $this->view('panel::cms.bannerPlaces.index', [
             "records" => $bannerPlaces]);

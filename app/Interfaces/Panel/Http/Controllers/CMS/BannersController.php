@@ -50,7 +50,7 @@ class BannersController extends BaseController
 
     public function index()
     {
-        $banners = $this->bannerRepository->index($this->request, ['*']);
+        $banners = $this->bannerRepository->index($this->request->toArray(), ['*']);
 
         $banners = $this->bannerRepository->loadModelRelations($banners, [
             'place'

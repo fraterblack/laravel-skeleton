@@ -46,7 +46,7 @@ class ContactsController extends BaseController
 
     public function index()
     {
-        $contacts = $this->contactRepository->index($this->request, ['*']);
+        $contacts = $this->contactRepository->index($this->request->toArray(), ['*']);
 
         $contacts = $this->contactRepository->loadModelRelations($contacts, [
             'recipient'

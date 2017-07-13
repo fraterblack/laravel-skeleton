@@ -43,7 +43,7 @@ class PagesController extends BaseController
 
     public function index()
     {
-        $pages = $this->pageRepository->index($this->request, [ 'id', 'title', 'slug', 'active', 'created_at' ]);
+        $pages = $this->pageRepository->index($this->request->toArray(), [ 'id', 'title', 'slug', 'active', 'created_at' ]);
 
         return $this->view('panel::cms.pages.index', [
             "records" => $pages

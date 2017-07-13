@@ -2,46 +2,32 @@
 
 namespace Lpf\Support\Domain\Repository;
 
-use Illuminate\Http\Request;
-
 trait AdvancedIndexRepositoryTrait
 {
     /**
      * Returns records, searching and ordering
-     * @param Request $request
+     * @param array $requestParam
      * @param array $columns
      * @param array $orderBy
      * @param int $take
      *
      * @return \Illuminate\Pagination\AbstractPaginator
      */
-    public function index(Request $request, array $columns = [ '*' ], array $orderBy = [], $take = null)
+    public function index(array $requestParam, array $columns = [ '*' ], array $orderBy = [], $take = null)
     {
         $modelTable = $this->newQuery()->getModel()->getTable();
 
         $query = $this->newQuery()->select($this->prefixNestedColumns($modelTable, $columns));
 
-        $query = $this->applyFilterStatement($request, $query);
-        $query = $this->applySearchStatement($request, $query);
-        $query = $this->applyOrderStatement($query, array_merge($orderBy, $this->getPredefinedOrderClauses($request)));
+        $query = $this->applyFilterStatement($requestParam, $query);
+        $query = $this->applySearchStatement($requestParam, $query);
+        $query = $this->applyOrderStatement($query, array_merge($orderBy, $this->getPredefinedOrderClauses($requestParam)));
 
         $results = $this->doQuery($query, $this->resolveResultLimit($take), true);
 
-        $this->addQueries($request, $results);
+        $this->addQueries($requestParam, $results);
 
         return $results;
-    }
-
-    /**
-     * @param Request $request
-     * @param array $filters
-     * @return mixed
-     */
-    public function applyFilterBeforeIndex(Request $request, array $filters)
-    {
-        $request->merge([
-            config('repository.request.params.filter', 'filter') => $request->query(config('repository.request.params.filter', 'filter'), $filters)
-        ]);
     }
 
     /**
@@ -62,15 +48,15 @@ trait AdvancedIndexRepositoryTrait
 
     /**
      * Returns the predefined order clauses. Gets the clauses in $orderingDefault attribute and in the orderBy param gets passed in url.
-     * @param Request $request
+     * @param array $requestParam
      * @return array
      */
-    public function getPredefinedOrderClauses(Request $request)
+    public function getPredefinedOrderClauses(array $requestParam)
     {
         $orderClauses = [];
 
-        $orderBy = $request->get(config('repository.request.params.orderBy', 'orderBy'), null);
-        $sortedBy = $request->get(config('repository.request.params.sortedBy', 'sortedBy'), 'asc');
+        $orderBy = $this->validRequestParam($requestParam, config('repository.request.params.orderBy', 'orderBy'));
+        $sortedBy = $this->validRequestParam($requestParam, config('repository.request.params.sortedBy', 'sortedBy'), 'asc');
 
         if (!empty($orderBy) && !empty($sortedBy)) {
             $orderClauses[$orderBy] = $sortedBy;
@@ -111,17 +97,15 @@ trait AdvancedIndexRepositoryTrait
 
     /**
      * Adds queries if any param was get passed in url
-     * @param string $request
+     * @param array $requestParam
      * @param \Illuminate\Database\Eloquent\Model $model
      */
-    protected function addQueries($request, $model)
+    protected function addQueries(array $requestParam, $model)
     {
-        //dd($request);
-
-        $model->addQuery(config('repository.request.params.search', 'search'), $request->get(config('repository.request.params.search')));
-        $model->addQuery(config('repository.request.params.filter', 'filter'), $request->get(config('repository.request.params.filter')));
-        $model->addQuery(config('repository.request.params.orderBy', 'orderBy'), $request->get(config('repository.request.params.orderBy')));
-        $model->addQuery(config('repository.request.params.sortedBy', 'sortedBy'), $request->get(config('repository.request.params.sortedBy')));
+        $model->addQuery(config('repository.request.params.search', 'search'), $this->validRequestParam($requestParam, config('repository.request.params.search')));
+        $model->addQuery(config('repository.request.params.filter', 'filter'), $this->validRequestParam($requestParam, config('repository.request.params.filter')));
+        $model->addQuery(config('repository.request.params.orderBy', 'orderBy'), $this->validRequestParam($requestParam, config('repository.request.params.orderBy')));
+        $model->addQuery(config('repository.request.params.sortedBy', 'sortedBy'), $this->validRequestParam($requestParam, config('repository.request.params.sortedBy')));
     }
 
 
@@ -146,19 +130,19 @@ trait AdvancedIndexRepositoryTrait
 
     /**
      * Applies the filter statement in the query
-     * @param Request $request
+     * @param array $requestParam
      * @param \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder|null $query
      * @param array|null $filter
      *
      * @return \Illuminate\Database\Query\Builder
      */
-    protected function applyFilterStatement(Request $request, $query = null, array $filter = null)
+    protected function applyFilterStatement(array $requestParam, $query = null, array $filter = null)
     {
         if (is_null($query)) {
             $query = $this->newQuery();
         }
 
-        $filterTerms = ($filter) ? $filter : $request->get(config('repository.request.params.filter', 'filter'), null);
+        $filterTerms = ($filter) ? $filter : $this->validRequestParam($requestParam, config('repository.request.params.filter', 'filter'), null);
 
         if ($filterTerms) {
             $query = $this->createWhereClauseForFilter($filterTerms, $query);
@@ -167,11 +151,13 @@ trait AdvancedIndexRepositoryTrait
         return $query;
     }
 
+
     /**
      * Create the where clauses used in filter statement
      *
      * @param array|string $filterTerms
      * @param \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder|null $query
+     * @return null
      */
     protected function createWhereClauseForFilter($filterTerms, $query = null)
     {
@@ -203,26 +189,21 @@ trait AdvancedIndexRepositoryTrait
 
     /**
      * Applies the search statement in the query
-     * @param Request $request
+     * @param array $requestParam
      * @param \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder|null $query
      * @param string|null $search
      *
      * @return \Illuminate\Database\Query\Builder
      */
-    protected function applySearchStatement(Request $request, $query = null, $search = null)
+    protected function applySearchStatement(array $requestParam, $query = null, $search = null)
     {
         if (is_null($query)) {
             $query = $this->newQuery();
         }
 
-        //try {
-            $fieldsSearchable = $this->getFieldsSearchable();
-        //} catch (\Exception $e) {
-            //dd('Sai');
-            //return new \Exception();
-        //}
+        $fieldsSearchable = $this->getFieldsSearchable();
 
-        $search = ($search) ? $search : $request->get(config('repository.request.params.search', 'search'), null);
+        $search = ($search) ? $search : $this->validRequestParam($requestParam, config('repository.request.params.search', 'search'));
 
         if ($search && is_array($fieldsSearchable) && count($fieldsSearchable)) {
             $fields = $fieldsSearchable;
@@ -315,7 +296,7 @@ trait AdvancedIndexRepositoryTrait
     }
 
     /**
-     * @param array $filterTerm
+     * @param array $filterTerms
      *
      * @return mixed
      */
@@ -352,5 +333,20 @@ trait AdvancedIndexRepositoryTrait
         }
 
         return $parsedTerm;
+    }
+
+    /**
+     * @param array $requestParam
+     * @param $key
+     * @param null $default
+     * @return mixed|null
+     */
+    protected function validRequestParam(array $requestParam, $key, $default = null)
+    {
+        if (isset($requestParam[$key])) {
+            return $requestParam[$key];
+        }
+
+        return $default;
     }
 }

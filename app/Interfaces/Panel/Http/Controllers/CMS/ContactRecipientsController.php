@@ -40,7 +40,7 @@ class ContactRecipientsController extends BaseController
 
     public function index()
     {
-        $contactRecipients = $this->contactRecipientRepository->index($this->request, ['id', 'name', 'email', 'active', 'created_at']);
+        $contactRecipients = $this->contactRecipientRepository->index($this->request->toArray(), ['id', 'name', 'email', 'active', 'created_at']);
 
         return $this->view('panel::cms.contactRecipients.index', [
             "records" => $contactRecipients]);

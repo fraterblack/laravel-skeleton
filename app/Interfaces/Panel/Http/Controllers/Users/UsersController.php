@@ -45,7 +45,7 @@ class UsersController extends BaseController
 
     public function index()
     {
-        $users = $this->userRepository->index($this->request,  ['*']);
+        $users = $this->userRepository->index($this->request->toArray(),  ['*']);
         $users = $this->userRepository->loadModelRelations($users, [
             'roles'
         ]);
