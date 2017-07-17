@@ -3,7 +3,7 @@
 namespace Lpf\Domains\Users\Database\Migrations;
 
 use Illuminate\Database\Schema\Blueprint;
-use Lpf\Support\Database\Migration;
+use Lpf\Support\Domain\Database\Migration;
 
 /**
  * Class CreateUsersTable.

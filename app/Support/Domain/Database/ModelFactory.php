@@ -1,6 +1,6 @@
 <?php
 
-namespace Lpf\Support\Database;
+namespace Lpf\Support\Domain\Database;
 
 use Faker\Generator;
 use Illuminate\Database\Eloquent\Factory;
