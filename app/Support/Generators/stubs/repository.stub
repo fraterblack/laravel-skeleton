@@ -1,0 +1,17 @@
+<?php
+
+namespace Lpf\Domains\NamespacedDummyModule\Repositories;
+
+use Lpf\Support\Domain\Repository\Repository;
+use Lpf\Domains\NamespacedDummyModule\DummyModel;
+use Lpf\Domains\NamespacedDummyModule\Contracts\DummyClass as DummyClassContract;
+
+class DummyClass extends Repository implements DummyClassContract
+{
+    /**
+     * Model class for repo.
+     *
+     * @var \Illuminate\Database\Eloquent\Model
+     */
+    protected $modelClass = DummyModel::class;
+}

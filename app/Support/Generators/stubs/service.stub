@@ -1,0 +1,9 @@
+<?php
+
+namespace Lpf\Domains\NamespacedDummyModule\Services;
+
+use Lpf\Domains\NamespacedDummyModule\Contracts\DummyClass as DummyClassContract;
+
+class DummyClass implements DummyClassContract
+{
+}

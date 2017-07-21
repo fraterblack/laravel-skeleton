@@ -1,0 +1,9 @@
+<?php
+
+namespace Lpf\Domains\NamespacedDummyModule\Contracts;
+
+use Lpf\Support\Domain\Repository\Contracts\Repository;
+
+interface DummyClass extends Repository
+{
+}

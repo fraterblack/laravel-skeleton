@@ -1,0 +1,7 @@
+<?php
+
+namespace Lpf\Domains\NamespacedDummyModule\Contracts;
+
+interface DummyClass
+{
+}

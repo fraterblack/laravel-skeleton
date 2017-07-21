@@ -186,6 +186,7 @@ return [
         /*
          * Support Service Providers...
          */
+        Lpf\Support\Generators\Providers\ServiceProvider::class,
         Lpf\Support\Services\Mail\Providers\MailServiceProvider::class,
 
         /**
