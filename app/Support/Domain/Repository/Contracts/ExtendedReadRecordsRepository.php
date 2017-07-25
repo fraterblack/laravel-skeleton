@@ -2,7 +2,9 @@
 
 namespace Lpf\Support\Domain\Repository\Contracts;
 
-interface RetrieveExtendedRepository
+use Artesaos\Warehouse\Contracts\Operations\ReadRecords;
+
+interface ExtendedReadRecordsRepository extends ReadRecords
 {
     public function findBySlug($slug, $columns = [ '*' ]);
 

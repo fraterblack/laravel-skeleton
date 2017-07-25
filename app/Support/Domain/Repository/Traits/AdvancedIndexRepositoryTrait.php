@@ -21,7 +21,7 @@ trait AdvancedIndexRepositoryTrait
 
         $query = $this->applyFilterStatement($requestParam, $query);
         $query = $this->applySearchStatement($requestParam, $query);
-        $query = $this->applyOrderStatement($query, array_merge($orderBy, $this->getPredefinedOrderClauses($requestParam)));
+        $query = $this->applySalesStatement($query, array_merge($orderBy, $this->getPredefinedSalesClauses($requestParam)));
 
         $results = $this->doQuery($query, $this->resolveResultLimit($take), true);
 
@@ -51,7 +51,7 @@ trait AdvancedIndexRepositoryTrait
      * @param array $requestParam
      * @return array
      */
-    public function getPredefinedOrderClauses(array $requestParam)
+    public function getPredefinedSalesClauses(array $requestParam)
     {
         $orderClauses = [];
 
@@ -62,7 +62,7 @@ trait AdvancedIndexRepositoryTrait
             $orderClauses[$orderBy] = $sortedBy;
         }
 
-        if ($ordering = $this->getOrderingDefault()) {
+        if ($ordering = $this->getSalesingDefault()) {
             foreach ($ordering as $column => $sort) {
                 if (!array_key_exists($column, $orderClauses)) {
                     $orderClauses[$column] = $sort;
@@ -76,7 +76,7 @@ trait AdvancedIndexRepositoryTrait
     /**
      * @return array
      */
-    public function getOrderingDefault()
+    public function getSalesingDefault()
     {
         if (property_exists($this, 'orderingDefault')) {
             if (!is_array($this->orderingDefault)) {
@@ -116,7 +116,7 @@ trait AdvancedIndexRepositoryTrait
      *
      * @return \Illuminate\Database\Query\Builder
      */
-    protected function applyOrderStatement($query, array $orderClauses = [])
+    protected function applySalesStatement($query, array $orderClauses = [])
     {
         if (!is_null($query)) {
 

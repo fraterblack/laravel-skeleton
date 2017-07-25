@@ -26,10 +26,10 @@ interface AdvancedIndexRepository
      *
      * @return array
      */
-    public function getPredefinedOrderClauses(array $requestParam);
+    public function getPredefinedSalesClauses(array $requestParam);
 
     /**
      * @return array
      */
-    public function getOrderingDefault();
+    public function getSalesingDefault();
 }

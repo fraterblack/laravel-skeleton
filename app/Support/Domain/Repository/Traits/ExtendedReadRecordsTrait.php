@@ -2,8 +2,12 @@
 
 namespace Lpf\Support\Domain\Repository\Traits;
 
-trait RetrieveExtendedRepositoryTrait
+use Artesaos\Warehouse\Operations\ReadRecords;
+
+trait ExtendedReadRecordsTrait
 {
+    use ReadRecords;
+
     /**
      * Retrieves a record by his id
      *

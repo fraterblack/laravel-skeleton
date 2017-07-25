@@ -5,12 +5,9 @@ namespace Lpf\Domains\Location\Repositories;
 use Lpf\Domains\Location\City;
 use Lpf\Domains\Location\Contracts\CityRepository as CityRepositoryContract;
 use Lpf\Support\Domain\Repository\Repository;
-use Lpf\Support\Domain\Repository\Traits\RetrieveExtendedRepositoryTrait as RetrieveExtendedRepository;
 
 class CityRepository extends Repository implements CityRepositoryContract
 {
-    use RetrieveExtendedRepository;
-
     /**
      * Model class for repo.
      *

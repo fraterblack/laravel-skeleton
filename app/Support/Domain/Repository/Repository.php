@@ -2,27 +2,22 @@
 
 namespace Lpf\Support\Domain\Repository;
 
-use Artesaos\Warehouse\CrudRepository;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Str;
 use InvalidArgumentException;
+use Illuminate\Support\Str;
+use Artesaos\Warehouse\Operations\CreateRecords;
+use Artesaos\Warehouse\Operations\UpdateRecords;
+use Lpf\Support\Domain\Repository\Traits\ExtendedDeleteRecordsTrait;
+use Lpf\Support\Domain\Repository\Traits\ExtendedReadRecordsTrait;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Lpf\Support\Domain\Repository\Contracts\Repository as RepositoryContract;
+use Artesaos\Warehouse\Repository as WarehouseRepository;
 
-class Repository extends CrudRepository implements RepositoryContract
+abstract class Repository extends WarehouseRepository implements RepositoryContract
 {
-    /**
-     * Delete model by id
-     *
-     * @param int $id
-     *
-     * @return bool
-     */
-    public function deleteById($id)
-    {
-        $model = $this->findByID($id);
-
-        return $this->delete($model);
-    }
+    use CreateRecords,
+        ExtendedReadRecordsTrait,
+        UpdateRecords,
+        ExtendedDeleteRecordsTrait;
 
     /**
      * Load relations of a Model

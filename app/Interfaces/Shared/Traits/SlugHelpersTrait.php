@@ -2,13 +2,13 @@
 
 namespace Lpf\Interfaces\Shared\Traits;
 
-use Lpf\Support\Domain\Repository\Contracts\RetrieveExtendedRepository;
+use Lpf\Support\Domain\Repository\Contracts\ExtendedReadRecordsRepository;
 
 trait SlugHelpersTrait
 {
 
     /**
-     * @param RetrieveExtendedRepository $repository
+     * @param ExtendedReadRecordsRepository $repository
      * @param string $value
      * @param null|integer $id
      * @param string $field
@@ -30,7 +30,7 @@ trait SlugHelpersTrait
     }
 
     /**
-     * @param RetrieveExtendedRepository $repository
+     * @param ExtendedReadRecordsRepository $repository
      * @param string $slug
      * @param null|integer $id
      * @param string $field
@@ -38,7 +38,7 @@ trait SlugHelpersTrait
      */
     protected function validateSlug($repository, $slug, $id = null, $field = 'slug')
     {
-        if (!$repository instanceof RetrieveExtendedRepository) {
+        if (!$repository instanceof ExtendedReadRecordsRepository) {
             return new \UnexpectedValueException('The method findByField is not available in the repository');
         }
 

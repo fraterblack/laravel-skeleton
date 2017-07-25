@@ -6,11 +6,10 @@ use Lpf\Domains\CMS\Contact;
 use Lpf\Domains\CMS\Contracts\ContactRepository as ContactRepositoryContract;
 use Lpf\Support\Domain\Repository\Traits\AdvancedIndexRepositoryTrait as AdvancedIndexRepository;
 use Lpf\Support\Domain\Repository\Repository;
-use Lpf\Support\Domain\Repository\Traits\RetrieveExtendedRepositoryTrait as RetrieveExtendedRepository;
 
 class ContactRepository extends Repository implements ContactRepositoryContract
 {
-    use RetrieveExtendedRepository, AdvancedIndexRepository;
+    use AdvancedIndexRepository;
 
     /**
      * Model class for repo.
