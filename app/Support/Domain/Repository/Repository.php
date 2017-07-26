@@ -37,28 +37,41 @@ abstract class Repository extends WarehouseRepository implements RepositoryContr
     }
 
     /**
-     * Prefix the columns with the $table param
-     * @param string $table
+     * Prefix the columns with the table name
+     * @param string $tableName
      * @param array $columns
      * @return array
      */
-    public function prefixNestedColumns($table, array $columns)
+    public function prefixNestedColumns($tableName, array $columns)
     {
         $processedColumns = [];
 
-        foreach ($columns as $column) {
-            if (!Str::contains($column, '.')) {
-                $processedColumns[] = $table . '.' . $column;
-            }
+        foreach ($columns as $columnName) {
+            $processedColumns[] = $this->prefixColumn($tableName, $columnName);
         }
 
         return $processedColumns;
     }
 
     /**
+     * Prefix the column name
+     * @param string $tableName
+     * @param string $columnName
+     * @return string
+     */
+    public function prefixColumn($tableName, $columnName)
+    {
+        if (! Str::contains($columnName, '.')) {
+            return "{$tableName}.{$columnName}";
+        }
+
+        return $columnName;
+    }
+
+    /**
      * Returns the limit to results
-     *
-     * @return int
+     * @param integer|null $limit
+     * @return integer
      */
     public function resolveResultLimit($limit = null)
     {

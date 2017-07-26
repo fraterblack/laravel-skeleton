@@ -22,17 +22,25 @@ interface Repository extends
     public function loadModelRelations($model, array $relations);
 
     /**
-     * Prefix with table name nested columns
-     * @param $table
+     * Prefix the columns with the table name
+     * @param string $tableName
      * @param array $columns
-     * @return mixed
+     * @return array
      */
-    public function prefixNestedColumns($table, array $columns);
+    public function prefixNestedColumns($tableName, array $columns);
 
     /**
-     * Return the result limit for a pagination
-     * @param null $limit
-     * @return mixed
+     * Prefix the column name
+     * @param string $tableName
+     * @param string $columnName
+     * @return string
+     */
+    public function prefixColumn($tableName, $columnName);
+
+    /**
+     * Returns the limit to results
+     * @param integer|null $limit
+     * @return integer
      */
     public function resolveResultLimit($limit = null);
 }
