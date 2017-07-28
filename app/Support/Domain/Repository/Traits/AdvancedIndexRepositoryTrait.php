@@ -13,15 +13,16 @@ trait AdvancedIndexRepositoryTrait
      *
      * @return \Illuminate\Pagination\AbstractPaginator
      */
-    public function index(array $requestParam, array $columns = [ '*' ], array $orderBy = [], $take = null)
+    public function index(array $requestParam, array $columns = ['*'], array $orderBy = [], $take = null)
     {
         $modelTable = $this->newQuery()->getModel()->getTable();
 
         $query = $this->newQuery()->select($this->prefixNestedColumns($modelTable, $columns));
 
-        $query = $this->applyFilterStatement($requestParam, $query);
-        $query = $this->applySearchStatement($requestParam, $query);
-        $query = $this->applySortStatement($query, array_merge($orderBy, $this->getPredefinedSalesClauses($requestParam)));
+        $this->applyFilterStatement($requestParam, $query);
+        $this->applySearchStatement($requestParam, $query);
+        $this->applySortStatement($query, array_merge($orderBy, $this->getPredefinedSortClauses($requestParam)));
+        $this->applyAdditionalIndexCondition($query);
 
         $results = $this->doQuery($query, $this->resolveResultLimit($take), true);
 
@@ -35,14 +36,14 @@ trait AdvancedIndexRepositoryTrait
      */
     public function getFieldsSearchable()
     {
-        if (property_exists($this, 'fieldSearchable')) {
-            if (is_array($this->fieldSearchable) && count($this->fieldSearchable) > 0) {
-                return $this->fieldSearchable;
+        if (property_exists($this, 'searchableFields')) {
+            if (is_array($this->searchableFields) && count($this->searchableFields) > 0) {
+                return $this->searchableFields;
             }
 
-            throw new \InvalidArgumentException('The value of $fieldSearchable argument is invalid.');
+            throw new \InvalidArgumentException('The value of self::searchableFields argument is invalid.');
         } else {
-            throw new \BadMethodCallException('The $fieldSearchable argument is missing in the repository.');
+            throw new \BadMethodCallException('The self::searchableFields argument is missing in the repository.');
         }
     }
 
@@ -51,7 +52,7 @@ trait AdvancedIndexRepositoryTrait
      * @param array $requestParam
      * @return array
      */
-    public function getPredefinedSalesClauses(array $requestParam)
+    public function getPredefinedSortClauses(array $requestParam)
     {
         $orderClauses = [];
 
@@ -246,6 +247,17 @@ trait AdvancedIndexRepositoryTrait
             });
         }
 
+        return $query;
+    }
+
+    /**
+     * Applies the a additional condition statement in the query.
+     * @param \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder $query
+     *
+     * @return \Illuminate\Database\Query\Builder
+     */
+    protected function applyAdditionalIndexCondition($query)
+    {
         return $query;
     }
 
