@@ -22,7 +22,7 @@ trait AdvancedIndexRepositoryTrait
         $this->applyFilterStatement($requestParam, $query);
         $this->applySearchStatement($requestParam, $query);
         $this->applySortStatement($query, array_merge($orderBy, $this->getPredefinedSortClauses($requestParam)));
-        $this->applyAdditionalIndexCondition($query);
+        $this->applyAdditionalStatementToIndex($query);
 
         $results = $this->doQuery($query, $this->resolveResultLimit($take), true);
 
@@ -256,7 +256,7 @@ trait AdvancedIndexRepositoryTrait
      *
      * @return \Illuminate\Database\Query\Builder
      */
-    protected function applyAdditionalIndexCondition($query)
+    protected function applyAdditionalStatementToIndex($query)
     {
         return $query;
     }
