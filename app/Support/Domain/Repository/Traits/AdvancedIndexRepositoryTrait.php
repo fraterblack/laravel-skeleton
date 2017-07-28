@@ -50,6 +50,22 @@ trait AdvancedIndexRepositoryTrait
     dd($query->toSql());
 
     return $results;
+    }public function index(array $requestParam, array $columns = ['*'], array $orderBy = [], $take = null)
+    {
+    $query = $this->newQuery();
+
+    $query->addSelect($this->prefixNestedColumns($query->getModel()->getTable(), $columns));
+
+    $this->applyFilterStatement($requestParam, $query);
+    $this->applySearchStatement($requestParam, $query);
+    $this->applySortStatement($query, array_merge($orderBy, $this->getPredefinedSortClauses($requestParam)));
+    $this->applyAdditionalStatementToIndex($query);
+
+    $results = $this->doQuery($query, $this->resolveResultLimit($take), true);
+
+    $this->addQueries($requestParam, $results);
+
+    return $results;
     }
      */
     public function getFieldsSearchable()
