@@ -21,7 +21,7 @@ trait AdvancedIndexRepositoryTrait
 
         $query = $this->applyFilterStatement($requestParam, $query);
         $query = $this->applySearchStatement($requestParam, $query);
-        $query = $this->applySalesStatement($query, array_merge($orderBy, $this->getPredefinedSalesClauses($requestParam)));
+        $query = $this->applySortStatement($query, array_merge($orderBy, $this->getPredefinedSalesClauses($requestParam)));
 
         $results = $this->doQuery($query, $this->resolveResultLimit($take), true);
 
@@ -116,7 +116,7 @@ trait AdvancedIndexRepositoryTrait
      *
      * @return \Illuminate\Database\Query\Builder
      */
-    protected function applySalesStatement($query, array $orderClauses = [])
+    protected function applySortStatement($query, array $orderClauses = [])
     {
         if (!is_null($query)) {
 
