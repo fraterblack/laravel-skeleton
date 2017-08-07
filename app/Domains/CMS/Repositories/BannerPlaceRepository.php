@@ -18,11 +18,11 @@ class BannerPlaceRepository extends Repository implements BannerPlaceRepositoryC
      */
     protected $modelClass = BannerPlace::class;
 
-    protected $fieldSearchable = [
+    protected $searchableFields = [
         'name' => 'like',
     ];
 
-    protected $orderingDefault = [
+    protected $defaultSorting = [
         'name' => 'asc'
     ];
 

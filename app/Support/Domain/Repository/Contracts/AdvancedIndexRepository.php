@@ -21,15 +21,15 @@ interface AdvancedIndexRepository
     public function getFieldsSearchable();
 
     /**
-     * Returns the predefined order clauses. Gets the clauses in $orderingDefault attribute and in the orderBy param gets passed in url.
+     * Returns the predefined sorting clauses. Gets the clauses in $defaultSorting attribute and in the orderBy param gets passed in url.
      * @param array $requestParam
      *
      * @return array
      */
-    public function getPredefinedSalesClauses(array $requestParam);
+    public function getPredefinedSortingClauses(array $requestParam);
 
     /**
      * @return array
      */
-    public function getSalesingDefault();
+    public function getDefaultSorting();
 }

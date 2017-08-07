@@ -18,12 +18,12 @@ class ContactRepository extends Repository implements ContactRepositoryContract
      */
     protected $modelClass = Contact::class;
 
-    protected $fieldSearchable = [
+    protected $searchableFields = [
         'name' => 'like',
         'subject' => 'like',
     ];
 
-    protected $orderingDefault = [
+    protected $defaultSorting = [
         'created_at' => 'desc'
     ];
 }

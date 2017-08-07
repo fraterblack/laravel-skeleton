@@ -21,12 +21,12 @@ class UserRepository extends Repository implements UserRepositoryContract
      */
     protected $modelClass = User::class;
 
-    protected $fieldSearchable = [
+    protected $searchableFields = [
         'name' => 'like',
         'email' => 'like',
     ];
 
-    protected $orderingDefault = [
+    protected $defaultSorting = [
         'created_at' => 'desc'
     ];
 

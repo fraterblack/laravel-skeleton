@@ -18,11 +18,11 @@ class PageRepository extends Repository implements PageRepositoryContract
      */
     protected $modelClass = Page::class;
 
-    protected $fieldSearchable = [
+    protected $searchableFields = [
         'title' => 'like',
     ];
 
-    protected $orderingDefault = [
+    protected $defaultSorting = [
         'title' => 'asc'
     ];
 

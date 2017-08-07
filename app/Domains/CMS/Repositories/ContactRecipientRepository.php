@@ -18,11 +18,11 @@ class ContactRecipientRepository extends Repository implements ContactRecipientR
      */
     protected $modelClass = ContactRecipient::class;
 
-    protected $fieldSearchable = [
+    protected $searchableFields = [
         'name' => 'like',
     ];
 
-    protected $orderingDefault = [
+    protected $defaultSorting = [
         'name' => 'asc'
     ];
 

@@ -18,11 +18,11 @@ class BannerRepository extends Repository implements BannerRepositoryContract
      */
     protected $modelClass = Banner::class;
 
-    protected $fieldSearchable = [
+    protected $searchableFields = [
         'name' => 'like',
     ];
 
-    protected $orderingDefault = [
+    protected $defaultSorting = [
         'created_at' => 'desc'
     ];
 }

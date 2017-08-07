@@ -5,7 +5,7 @@ namespace Lpf\Support\Domain\Repository\Traits;
 trait AdvancedIndexRepositoryTrait
 {
     /**
-     * Returns records, searching and ordering
+     * Returns records, searching and sorting
      * @param array $requestParam
      * @param array $columns
      * @param array $orderBy
@@ -21,7 +21,7 @@ trait AdvancedIndexRepositoryTrait
 
         $this->applyFilterStatement($requestParam, $query);
         $this->applySearchStatement($requestParam, $query);
-        $this->applySortStatement($query, array_merge($orderBy, $this->getPredefinedSortClauses($requestParam)));
+        $this->applySortStatement($query, array_merge($orderBy, $this->getPredefinedSortingClauses($requestParam)));
         $this->applyAdditionalStatementToIndex($query);
 
         $results = $this->doQuery($query, $this->resolveResultLimit($take), true);
@@ -31,43 +31,6 @@ trait AdvancedIndexRepositoryTrait
         return $results;
     }
 
-    /**
-     * @return arraypublic function index(array $requestParam, array $columns = ['*'], array $orderBy = [], $take = null)
-    {
-    $query = $this->newQuery();
-
-    $query->select($this->prefixNestedColumns($query->getModel()->getTable(), $columns));
-
-    $this->applyFilterStatement($requestParam, $query);
-    $this->applySearchStatement($requestParam, $query);
-    $this->applySortStatement($query, array_merge($orderBy, $this->getPredefinedSortClauses($requestParam)));
-    $this->applyAdditionalStatementToIndex($query);
-
-    $results = $this->doQuery($query, $this->resolveResultLimit($take), true);
-
-    $this->addQueries($requestParam, $results);
-
-    dd($query->toSql());
-
-    return $results;
-    }public function index(array $requestParam, array $columns = ['*'], array $orderBy = [], $take = null)
-    {
-    $query = $this->newQuery();
-
-    $query->addSelect($this->prefixNestedColumns($query->getModel()->getTable(), $columns));
-
-    $this->applyFilterStatement($requestParam, $query);
-    $this->applySearchStatement($requestParam, $query);
-    $this->applySortStatement($query, array_merge($orderBy, $this->getPredefinedSortClauses($requestParam)));
-    $this->applyAdditionalStatementToIndex($query);
-
-    $results = $this->doQuery($query, $this->resolveResultLimit($take), true);
-
-    $this->addQueries($requestParam, $results);
-
-    return $results;
-    }
-     */
     public function getFieldsSearchable()
     {
         if (property_exists($this, 'searchableFields')) {
@@ -82,51 +45,51 @@ trait AdvancedIndexRepositoryTrait
     }
 
     /**
-     * Returns the predefined order clauses. Gets the clauses in $orderingDefault attribute and in the orderBy param gets passed in url.
+     * Returns the predefined sorting clauses. Gets the clauses in $defaultSorting attribute and in the orderBy param gets passed in url.
      * @param array $requestParam
      * @return array
      */
-    public function getPredefinedSortClauses(array $requestParam)
+    public function getPredefinedSortingClauses(array $requestParam)
     {
-        $orderClauses = [];
+        $sortClauses = [];
 
         $orderBy = $this->validRequestParam($requestParam, config('repository.request.params.orderBy', 'orderBy'));
         $sortedBy = $this->validRequestParam($requestParam, config('repository.request.params.sortedBy', 'sortedBy'), 'asc');
 
         if (!empty($orderBy) && !empty($sortedBy)) {
-            $orderClauses[$orderBy] = $sortedBy;
+            $sortClauses[$orderBy] = $sortedBy;
         }
 
-        if ($ordering = $this->getSalesingDefault()) {
-            foreach ($ordering as $column => $sort) {
-                if (!array_key_exists($column, $orderClauses)) {
-                    $orderClauses[$column] = $sort;
+        if ($sorting = $this->getDefaultSorting()) {
+            foreach ($sorting as $column => $sort) {
+                if (!array_key_exists($column, $sortClauses)) {
+                    $sortClauses[$column] = $sort;
                 }
             }
         }
 
-        return $orderClauses;
+        return $sortClauses;
     }
 
     /**
      * @return array
      */
-    public function getSalesingDefault()
+    public function getDefaultSorting()
     {
-        if (property_exists($this, 'orderingDefault')) {
-            if (!is_array($this->orderingDefault)) {
-                throw new \InvalidArgumentException('The value of $orderingDefault argument is invalid.');
+        if (property_exists($this, 'defaultSorting')) {
+            if (!is_array($this->defaultSorting)) {
+                throw new \InvalidArgumentException('The value of $defaultSorting argument is invalid.');
             }
 
-            if (empty($this->orderingDefault)) {
-                $this->orderingDefault = [
+            if (empty($this->defaultSorting)) {
+                $this->defaultSorting = [
                     'id' => 'desc'
                 ];
             }
 
-            return $this->orderingDefault;
+            return $this->defaultSorting;
         } else {
-            throw new \BadMethodCallException('The $orderingDefault argument is missing in the repository');
+            throw new \BadMethodCallException('The $defaultSorting argument is missing in the repository');
         }
     }
 
@@ -145,17 +108,17 @@ trait AdvancedIndexRepositoryTrait
 
 
     /**
-     * Applies the order statement in the query.
+     * Applies the sorting statement in the query.
      * @param \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder $query
-     * @param array $orderClauses
+     * @param array $sortClauses
      *
      * @return \Illuminate\Database\Query\Builder
      */
-    protected function applySortStatement($query, array $orderClauses = [])
+    protected function applySortStatement($query, array $sortClauses = [])
     {
         if (!is_null($query)) {
 
-            foreach ($orderClauses as $column => $sort) {
+            foreach ($sortClauses as $column => $sort) {
                 $query->orderBy($column, $sort);
             }
         }
