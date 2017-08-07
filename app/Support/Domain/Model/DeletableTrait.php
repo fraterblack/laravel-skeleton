@@ -63,7 +63,7 @@ trait DeletableTrait
      */
     protected function canBeDeleted()
     {
-        if (!$this->protectedIds || !is_array($this->protectedIds)) {
+        if (! property_exists($this, 'protectedIds')) {
             throw new Exception('Please set the $protectedIds (array) property to your model.');
         }
 
