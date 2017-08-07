@@ -3,6 +3,7 @@
 namespace Lpf\Domains\Users\Providers;
 
 use Lpf\Domains\Users\Contracts;
+use Lpf\Domains\Users\Database\Factories;
 use Lpf\Domains\Users\Database\Migrations;
 use Lpf\Domains\Users\Database\Seeders;
 use Lpf\Domains\Users\Repositories;
@@ -63,5 +64,7 @@ class DomainServiceProvider extends ServiceProvider
     /**
      * @var array Model factories
      */
-    protected $factories = [];
+    protected $factories = [
+        Factories\UserFactory::class
+    ];
 }

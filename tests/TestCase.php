@@ -7,7 +7,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
      *
      * @var string
      */
-    protected $baseUrl = 'http://artees.app';
+    protected $baseUrl = 'http://http://127.0.0.1:8000';
 
     /**
      * Creates the application.

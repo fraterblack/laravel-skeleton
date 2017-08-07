@@ -15,8 +15,8 @@ class AddAvailabilitiesColumnsInBannersTable extends Migration
     public function up()
     {
         $this->schema->table('banners', function (Blueprint $table) {
-            $table->dateTime('availability_from');
-            $table->dateTime('availability_to');
+            $table->dateTime('availability_from')->nullable();
+            $table->dateTime('availability_to')->nullable();
         });
     }
 
@@ -28,8 +28,7 @@ class AddAvailabilitiesColumnsInBannersTable extends Migration
     public function down()
     {
         $this->schema->table('banners', function (Blueprint $table) {
-            $table->dropColumn('availability_from');
-            $table->dropColumn('availability_to');
+            $table->dropColumn(['availability_from', 'availability_to']);
         });
     }
 }
