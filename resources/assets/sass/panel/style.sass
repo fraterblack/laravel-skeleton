@@ -184,6 +184,12 @@
   display: block
   width: 100% !important
 
+  &--focus
+    .select2-selection--single
+      border-color: #66afe9
+      outline: 0
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6)
+
   .select2-selection--multiple
     .select2-selection__choice
       background: $colorPrimary !important
@@ -523,6 +529,21 @@ img
   .ui.error.message
     display: none !important
 
+//LOADER
+.loading + .loader
+  display: inline-block
+  width: 20px
+  height: 20px
+  vertical-align: -7px
+
+  &::before
+    content: ''
+    display: block
+    width: 20px
+    height: 20px
+    background: url(#{$urlBaseImages}images/panel/loading.gif) #fff no-repeat center center
+    background-size: 20px auto
+
 //INVOICE PAGE
 .invoice
   margin-left: 0
@@ -622,3 +643,57 @@ img
     .qq-upload-button
       width: 160px
 
+/* Corrige incompatibilidade entre .table-responsive e plugin DataTable */
+.table-responsive
+  .row
+    margin-left: 0
+    margin-right: 0
+
+  [class*="col-"]
+    padding-left: 0
+    padding-right: 0
+
+/* Ajuste melhor UX/UI mobile */
+@media (max-width: 768px)
+  .main-header
+
+    .logo
+      height: auto
+      padding-top: 7px
+      padding-bottom: 7px
+      line-height: 1em
+      font-size: 14px
+
+  .content-header + .content
+    padding-left: 4px
+    padding-right: 4px
+
+  .ui.segment
+    padding: 0.5em
+
+  .table-responsive table.dataTable
+    margin-top: -2px !important
+    margin-bottom: -2px !important
+    border: none
+
+  .table>tbody>tr>td
+    padding: 5px 4px
+    font-size: 12px
+
+  .table input
+    min-width: 60px
+    font-size: 12px
+    height: 30px
+    padding: 5px 6px
+    line-height: 1.5
+    border-radius: 3px
+
+    &[type="number"]
+      min-width: 30px
+
+  table.dataTable.table thead > tr > th
+    padding-right: 23px
+
+  .main-footer
+    padding: 6px 15px
+    font-size: 11px

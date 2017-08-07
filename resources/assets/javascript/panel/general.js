@@ -524,6 +524,8 @@ $(window).ready(function(){
         input.select2({
             language: "pt-BR",
             allowClear: true
+        }).on('select2:close', function () {
+            $(this).focus();
         });
     });
 
@@ -538,6 +540,8 @@ $(window).ready(function(){
         input.select2({
             language: "pt-BR",
             tokenSeparators: [',']
+        }).on('select2:close', function () {
+            $(this).focus();
         });
     });
 
@@ -546,11 +550,17 @@ $(window).ready(function(){
         language: "pt-BR",
         tags: true,
         tokenSeparators: [',']
+    }).on('select2:close', function () {
+        $(this).focus();
     });
 
     //Remote Data
     function formatRepo(repo) {
         if (repo.loading) return repo.text;
+
+        if (typeof customFormatRepo !== 'undefined') {
+            return customFormatRepo(repo);
+        }
 
         var thumb = (repo.thumb !== undefined && repo.thumb !== '') ? '<img src="' + repo.thumb + '"> ' : '';
 
@@ -597,7 +607,9 @@ $(window).ready(function(){
         commonRemoteConfig.ajax.url = selectElement.data('search-url');
         commonRemoteConfig.maximumSelectionLength = (selectElement.data('max-selection') === undefined ? 999 : selectElement.data('max-selection'));
 
-        selectElement.select2(commonRemoteConfig);
+        selectElement.select2(commonRemoteConfig).on('select2:close', function () {
+            $(this).focus();
+        });
     });
 
     $('.remoteSearchToFilter').each(function () {
@@ -630,7 +642,9 @@ $(window).ready(function(){
 
         commonRemoteConfig.maximumSelectionLength = 999;
 
-        selectElement.select2(commonRemoteConfig);
+        selectElement.select2(commonRemoteConfig).on('select2:close', function () {
+            $(this).focus();
+        });
 
         //Carrega valores iniciais
         if (selectElement.data('initial-id') !== '') {
