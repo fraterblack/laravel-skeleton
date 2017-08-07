@@ -9,10 +9,10 @@
   "type": "project",
   "require": {
     "php": ">=5.6.4",
-    "laravel/framework": "5.3.*",
-    "laravelcollective/html": "5.3.*",
+    "laravel/framework": "5.4.*",
+    "laravelcollective/html": "5.4.*",
     "barryvdh/laravel-ide-helper": "^2.1",
-    "artesaos/defender": "^0.6.2",
+    "artesaos/defender": "dev-master@dev",
     "rutorika/sortable": "^3.2",
     "cviebrock/eloquent-sluggable": "^4.1.1",
     "owen-it/laravel-auditing": "^2.0",
@@ -31,7 +31,7 @@
   "require-dev": {
     "fzaninotto/faker": "~1.4",
     "mockery/mockery": "0.9.*",
-    "phpunit/phpunit": "~5.0",
+    "phpunit/phpunit": "~5.7",
     "symfony/css-selector": "3.1.*",
     "symfony/dom-crawler": "3.1.*",
     "phpspec/phpspec": "~2.1",

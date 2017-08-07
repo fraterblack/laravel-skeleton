@@ -30,7 +30,7 @@
                             <tr data-item-id="{{ $page->id }}" class="{{ ($page->active) ? '' : 'danger' }}">
                                 <td>{{ $page->id }}</td>
                                 <td>{{ $page->title }}</td>
-                                <td><a href="{{ route('pages.show', $page->slug) }}" target="_blank">{{ route('pages.show', $page->slug) }}</a></td>
+                                <td>{{--<a href="{{ route('pages.show', $page->slug) }}" target="_blank">{{ route('pages.show', $page->slug) }}</a>--}}</td>
                                 <td class="text-center">
                                     @include('panel::_components.toggleActivationButtons', ['active' => $page->active, 'deactivate_route' => route('admin.pages.deactivate', $page->id), 'activate_route' => route('admin.pages.activate', $page->id)])
                                     @include('panel::_components.editButton', ['route' => route('admin.pages.edit', $page->id)])
