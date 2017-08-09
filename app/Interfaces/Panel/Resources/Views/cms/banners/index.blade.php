@@ -14,7 +14,7 @@
                         <a href="{{ route('admin.banners.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Cadastrar Banner</a>
                     </div>
 
-                    @include('panel::_partial.manageListOfRecords')
+                    @include('panel::_partial.indexFilter.inputs')
                     <table class="table table-bordered table-striped data-table"  data-highlight-text="{{ Request::get('search') }}">
                         <thead>
                             <tr>

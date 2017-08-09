@@ -106,11 +106,21 @@
   border-color: #337ab7;
 }
 
+.form-control-clear-filter,
 .form-control-clear-search {
-  right: 30px;
+  display: none;
   cursor: pointer;
   pointer-events: auto;
   text-decoration: none;
+}
+
+.form-control-clear-search {
+  right: 30px;
+}
+
+.active + .form-control-clear-search,
+.active + .form-control-clear-filter {
+  display: block;
 }
 
 .field.required label:not(.input-group-addon):after {
@@ -196,7 +206,7 @@
   width: 100% !important;
 }
 
-.select2-container--focus .select2-selection--single {
+.select2-container--focus {
   border-color: #66afe9;
   outline: 0;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
@@ -253,6 +263,18 @@
 
 .fancybox-overlay {
   background: url(../../vendor/bower/fancybox/source/fancybox_overlay.png);
+}
+
+.search-form-of-records .date-filter-container {
+  max-width: 145px;
+}
+
+.search-form-of-records .date-range-filter-container {
+  max-width: 220px;
+}
+
+.search-form-of-records .select-filter-container {
+  max-width: 100%;
 }
 
 .search-form-of-records .defaultSelect2,

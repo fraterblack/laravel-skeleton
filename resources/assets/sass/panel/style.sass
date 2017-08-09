@@ -23,7 +23,7 @@
 
   background: url(#{$urlBaseImages}images/panel/loading.gif) #fff no-repeat center center
 
-  //Layout
+//Layout
 .layout-boxed
   background: $colorGray
 
@@ -51,7 +51,7 @@
 
 .form-group label + label
   margin-left: 15px
-  
+
 .form-group :last-child
   margin-bottom: 0
 
@@ -98,12 +98,20 @@
   background-color: $colorYellow
   border-color: $colorPrimary
 
-.form-control-clear-search //Limpa formulário de busca
-  right: 30px
+.form-control-clear-filter,
+.form-control-clear-search //Limpa palavra da busca/filtro
+  display: none
 
   cursor: pointer
   pointer-events: auto
   text-decoration: none
+
+.form-control-clear-search //Limpa palavra da busca/filtro
+  right: 30px
+
+.active + .form-control-clear-search,
+.active + .form-control-clear-filter
+  display: block
 
 .field
   &.required
@@ -186,15 +194,15 @@
 
   &--focus
     .select2-selection--single
-      border-color: #66afe9
-      outline: 0
-      box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6)
+    border-color: #66afe9
+    outline: 0
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6)
 
   .select2-selection--multiple
     .select2-selection__choice
       background: $colorPrimary !important
       border-color: #367fa9 !important
-    
+
       .select2-selection__choice__remove
         color: #fff
 
@@ -238,6 +246,14 @@
 
 //Formulário de busca
 .search-form-of-records
+  //Container case
+  .date-filter-container
+    max-width: 145px
+  .date-range-filter-container
+    max-width: 220px
+  .select-filter-container
+    max-width: 100%
+
   .defaultSelect2,
   .multipleSelect2
     max-height: 30px
@@ -298,10 +314,10 @@
 //Ajuste Icheck quando minimizado
 .icheckbox_square-blue,
 .iradio_square-blue
-    background: url(#{$urlBaseVendor}vendor/iCheck/skins/square/blue.png) no-repeat
+  background: url(#{$urlBaseVendor}vendor/iCheck/skins/square/blue.png) no-repeat
 .icheckbox_line-blue .icheck_line-icon,
 .iradio_line-blue .icheck_line-icon
-    background: url(#{$urlBaseVendor}vendor/iCheck/skins/line/line.png) no-repeat
+  background: url(#{$urlBaseVendor}vendor/iCheck/skins/line/line.png) no-repeat
 
 .iradio_square-blue
   background-position: -120px 0
@@ -551,7 +567,7 @@ img
 
   .invoice-col
     p
-      //margin-bottom: 0
+  //margin-bottom: 0
   .invoice-title
     border-bottom: 1px solid #999
     padding-bottom: 4px
@@ -605,12 +621,12 @@ img
 //FINE UPLOADER
 .custom-fine-uploader
   margin-bottom: 30px
-  
+
   .qq-upload-status-text
     margin-top: 10px
     font-size: 12px
     font-weight: normal
-    
+
   .qq-upload-spinner
     position: absolute
     z-index: 10
@@ -633,7 +649,7 @@ img
 
     li
       position: relative
-      
+
       &.qq-upload-success
         background: #EBF5FB
         border-top-color: #f7f7f7

@@ -13,7 +13,7 @@
                     <div class="box-actions">
                     </div>
 
-                    @include('panel::_partial.manageListOfRecords')
+                    @include('panel::_partial.indexFilter.inputs')
                     <table class="table table-bordered table-striped data-table"  data-highlight-text="{{ Request::get('search') }}">
                         <thead>
                             <tr>

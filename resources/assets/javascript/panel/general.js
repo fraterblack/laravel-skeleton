@@ -313,7 +313,6 @@ $(window).ready(function(){
 
     //DATE PICKER
     var datePickerConfig = {
-        "singleDatePicker": true,
         "autoUpdateInput": false,
         "locale": {
             "format": "DD/MM/YYYY",
@@ -350,7 +349,10 @@ $(window).ready(function(){
         }
     };
 
+    //Single Date
     var attachDatePicker = function (input) {
+        datePickerConfig.singleDatePicker = true;
+
         input.daterangepicker(datePickerConfig, function(start, end, label) {
             input.val(start.format('DD/MM/YYYY'));
         });
@@ -363,10 +365,6 @@ $(window).ready(function(){
                 $(picker.container[0]).find('tr .active').removeClass('active');
             }
         });
-
-        /*input.on('cancel.daterangepicker', function(ev, picker) {
-         input.val('');
-         });*/
     };
     window.attachDatePicker = attachDatePicker;
 
@@ -376,6 +374,38 @@ $(window).ready(function(){
         attachDatePicker(input);
     });
 
+    //Single Date
+    var attachDateRangePicker = function (input) {
+        datePickerConfig.singleDatePicker = false;
+        datePickerConfig.ranges = {
+            'Hoje': [moment(), moment()],
+            'Ontem': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Último 7 dias': [moment().subtract(6, 'days'), moment()],
+            'Últimos 30 dias': [moment().subtract(29, 'days'), moment()],
+            'Este mês': [moment().startOf('month'), moment().endOf('month')],
+            'Mês passado': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        };
+
+        input.daterangepicker(datePickerConfig, function(start, end, label) {
+            input.val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+        });
+
+        input.on('show.daterangepicker', function(ev, picker) {
+            if (input.val() == '') {
+                picker.oldEndDate = null;
+                picker.oldStartDate = null;
+
+                $(picker.container[0]).find('tr .active').removeClass('active');
+            }
+        });
+    };
+    window.attachDateRangePicker = attachDateRangePicker;
+
+    $('.date-range-picker').each(function () {
+        var input = $(this);
+
+        attachDateRangePicker(input);
+    });
 
     //Datetime
     var datetimePickerConfig = $.extend({
@@ -399,10 +429,6 @@ $(window).ready(function(){
                 $(picker.container[0]).find('tr .active').removeClass('active');
             }
         });
-
-        /*input.on('cancel.daterangepicker', function(ev, picker) {
-         input.val('');
-         });*/
     };
     window.attachDatetimePicker = attachDatetimePicker;
 
@@ -502,14 +528,44 @@ $(window).ready(function(){
             }
         })
         //Ao clicar no cabeçalho com ordenação ativa
-        .on('click', function () {
-            var column = $(this);
+            .on('click', function () {
+                var column = $(this);
 
-            formFilter.find(".orderBy").val(column.attr("data-column"));
-            formFilter.find(".sortedBy").val(column.attr("data-order"));
+                formFilter.find(".orderBy").val(column.attr("data-column"));
+                formFilter.find(".sortedBy").val(column.attr("data-order"));
 
-            formFilter.submit();
+                formFilter.submit();
+            });
+    });
+
+    formFilter.submit(function (e) {
+        e.preventDefault(); //prevent submit
+        var self = this;
+
+        formFilter.find('.date-input').each(function () {
+            var input = $(this);
+
+            if (input.val() !== '') {
+                var target = $(input.data('target-filter'));
+                target.val(target.data('column') + '.' + target.data('condition') + '.' + moment(input.val(), 'DD/MM/YYYY').format('YYYY-MM-DD'));
+            }
         });
+
+        formFilter.find('.date-range-input').each(function () {
+            var input = $(this);
+
+            if (input.val() !== '') {
+                var value = input.val().split(' - ');
+
+                var target1 = $(input.data('target-filter') + '_1');
+                target1.val(target1.data('column') + '.>=.' + moment(value[0], 'DD/MM/YYYY').format('YYYY-MM-DD'));
+
+                var target2 = $(input.data('target-filter') + '_2');
+                target2.val(target2.data('column') + '.<=.' + moment(value[1], 'DD/MM/YYYY').format('YYYY-MM-DD'));
+            }
+        });
+
+        self.submit();
     });
 
     //PERSONALIZAÇÃO SELECT
@@ -652,16 +708,15 @@ $(window).ready(function(){
 
             selectElement.append($option).trigger('change');
 
-            var explodedInitialId = selectElement.data('initial-id').split(".");
-            var extractedId = explodedInitialId[2];
+            var initialId = selectElement.data('initial-id');
 
-            if (!extractedId) {
+            if (!initialId) {
                 return false;
             }
 
             $.ajax({
                 type: 'GET',
-                url: appendQueryString(selectElement.data('search-url'), {'id': extractedId}),
+                url: appendQueryString(selectElement.data('search-url'), {'id': initialId}),
                 dataType: 'json'
             }).then(function (data) {
                 if (data.success && data.results.length > 0) {
@@ -703,15 +758,15 @@ $(window).ready(function(){
         });
     });
 
-    //LIMPA O CAMPO E ACIONA FORMULÁRIO
-    $('.form-control-clear-search').on('click', function () {
+    //LIMPA O CAMPO DE BUSCA/FILTRO
+    $('.form-control-clear-search, .form-control-clear-filter').on('click', function () {
         var button = $(this);
-        var input = button.parents('.form-group').first().find('input[type="text"]');
+        var input = button.parents('.form-group').first().find('input[type=text]');
         var form = button.parents('form').first();
 
         input.val('');
 
-        form.submit();
+        //form.submit(); //É possível acionar o formulário logo após a limpeza do filtro
 
         return false;
     });

@@ -58,16 +58,28 @@ $(document).ready(function(){
     });
 
     //DATA
-    $('.mask-date').mask('00/00/0000', {
+    $('.mask-date:not(.no-placeholder)').mask('00/00/0000', {
         placeholder: '__/__/____',
         clearIfNotMatch: true
     });
-    $('.mask-time').mask('00:00:00', {
+    $('.mask-date.no-placeholder').mask('00/00/0000', {
+        placeholder: '',
+        clearIfNotMatch: true
+    });
+    $('.mask-time:not(.no-placeholder)').mask('00:00:00', {
         placeholder: '__:__:__',
         clearIfNotMatch: true
     });
-    $('.mask-date-time, .mask-datetime').mask('00/00/0000 00:00:00', {
+    $('.mask-time.no-placeholder').mask('00:00:00', {
+        placeholder: '',
+        clearIfNotMatch: true
+    });
+    $('.mask-date-time:not(.no-placeholder), .mask-datetime:not(.no-placeholder)').mask('00/00/0000 00:00:00', {
         placeholder: '__/__/____ __:__:__',
+        clearIfNotMatch: true
+    });
+    $('.mask-date-time.no-placeholder, .mask-datetime.no-placeholder').mask('00/00/0000 00:00:00', {
+        placeholder: '',
         clearIfNotMatch: true
     });
 

@@ -56,7 +56,9 @@ class BannersController extends BaseController
             'place'
         ]);
 
-        $this->createIndexFilter('Localização', 'banner_place_id', '=', false, $this->bannerPlaceRepository->dataForSelect()->toArray());
+        $this->addIndexFilter('Localização', 'banner_place_id', '=', 'select', [
+            'select_options' => $this->bannerPlaceRepository->dataForSelect()->toArray()
+        ]);
 
         return $this->view('panel::cms.banners.index', [
             "records" => $banners,

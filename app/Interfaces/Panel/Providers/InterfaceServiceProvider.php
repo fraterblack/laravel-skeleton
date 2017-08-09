@@ -14,5 +14,6 @@ class InterfaceServiceProvider extends ServiceProvider
 
     protected $providers = [
         RouteServiceProvider::class,
+        ViewComposerServiceProvider::class,
     ];
 }
