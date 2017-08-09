@@ -12,6 +12,9 @@ class StoreBannerPlaceRequest extends Request
             'display' => 'Mostrar',
             'limit' => 'Limite',
             'accepted_types' => 'Tipos Permitidos',
+            'width' => 'Largura',
+            'height' => 'Altura',
+            'description' => 'Descrição',
         ];
     }
 
