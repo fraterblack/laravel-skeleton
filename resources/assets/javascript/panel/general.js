@@ -528,19 +528,38 @@ $(window).ready(function(){
             }
         })
         //Ao clicar no cabeçalho com ordenação ativa
-            .on('click', function () {
-                var column = $(this);
+        .on('click', function () {
+            var column = $(this);
 
-                formFilter.find(".orderBy").val(column.attr("data-column"));
-                formFilter.find(".sortedBy").val(column.attr("data-order"));
+            formFilter.find(".orderBy").val(column.attr("data-column"));
+            formFilter.find(".sortedBy").val(column.attr("data-order"));
 
-                formFilter.submit();
-            });
+            formFilter.submit();
+        });
     });
 
     formFilter.submit(function (e) {
         e.preventDefault(); //prevent submit
         var self = this;
+
+        formFilter.find('.number-input').each(function () {
+            var input = $(this);
+
+            if (input.val() !== '') {
+                var target = $(input.data('target-filter'));
+                target.val(target.data('column') + '.' + target.data('condition') + '.' + input.val());
+            }
+        });
+
+        formFilter.find('.text-input').each(function () {
+            var input = $(this);
+
+            if (input.val() !== '') {
+                var target = $(input.data('target-filter'));
+                var likeWildcard = target.data('condition') === 'like' ? '%' : '';
+                target.val(target.data('column') + '.' + target.data('condition') + '.' + likeWildcard + input.val() + likeWildcard);
+            }
+        });
 
         formFilter.find('.date-input').each(function () {
             var input = $(this);
@@ -761,11 +780,10 @@ $(window).ready(function(){
     //LIMPA O CAMPO DE BUSCA/FILTRO
     $('.form-control-clear-search, .form-control-clear-filter').on('click', function () {
         var button = $(this);
-        var input = button.parents('.form-group').first().find('input[type=text]');
-        var form = button.parents('form').first();
-
+        var input = button.parents('.form-group').first().find('input');
         input.val('');
 
+        //var form = button.parents('form').first();
         //form.submit(); //É possível acionar o formulário logo após a limpeza do filtro
 
         return false;

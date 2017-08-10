@@ -21,6 +21,10 @@
                     @include('panel::_partial.indexFilter.dateInput')
                 @elseif($filter['type'] == 'date-range')
                     @include('panel::_partial.indexFilter.dateRangeInput')
+                @elseif($filter['type'] == 'number')
+                    @include('panel::_partial.indexFilter.numberInput')
+                @elseif($filter['type'] == 'text')
+                    @include('panel::_partial.indexFilter.textInput')
                 @elseif($filter['type'] == 'select')
                     @include('panel::_partial.indexFilter.selectInput')
                 @else

@@ -67,7 +67,10 @@ class IndexFilterComposer
             case 'date-range':
                 return Carbon::createFromFormat('Y-m-d', $value);
                 break;
-
+            case 'text':
+                return str_replace('%', '', $value);
+            case 'number':
+                return (int) $value;
             default:
                 return $value;
                 break;

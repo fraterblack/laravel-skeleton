@@ -206,7 +206,7 @@
   width: 100% !important;
 }
 
-.select2-container--focus {
+.select2-container--focus .select2-selection--single {
   border-color: #66afe9;
   outline: 0;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
@@ -265,12 +265,17 @@
   background: url(../../vendor/bower/fancybox/source/fancybox_overlay.png);
 }
 
+.search-form-of-records .has-feedback .form-control {
+  padding-right: 22px;
+}
+
 .search-form-of-records .date-filter-container {
   max-width: 145px;
 }
 
 .search-form-of-records .date-range-filter-container {
   max-width: 220px;
+  min-width: 200px;
 }
 
 .search-form-of-records .select-filter-container {
@@ -634,20 +639,29 @@ img {
   display: none !important;
 }
 
-.loading + .loader {
+.has-loader-feedback {
+  margin-right: 20px;
+}
+
+.has-loader-feedback + .loader {
   display: inline-block;
   width: 20px;
   height: 20px;
+  margin-left: -20px;
   vertical-align: -7px;
 }
 
-.loading + .loader::before {
+.has-loader-feedback + .loader::before {
   content: '';
-  display: block;
+  display: none;
   width: 20px;
   height: 20px;
   background: url(/images/panel/loading.gif) #fff no-repeat center center;
   background-size: 20px auto;
+}
+
+.has-loader-feedback.loading + .loader:before {
+  display: block;
 }
 
 .invoice {
