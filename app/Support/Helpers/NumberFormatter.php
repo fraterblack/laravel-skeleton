@@ -13,28 +13,28 @@ class NumberFormatter
      * Formata número para float
      * @param mixed $number
      * @param null|integer $decimals
-     * @param string $thousandsSeparator
+     * @param boolean $thousandsSeparator
      * @return float|string
      */
-    static public function toFloat($number, $decimals = null, $thousandsSeparator = '')
+    static public function toFloat($number, $decimals = null, $thousandsSeparator = false)
     {
         if (! $decimals) {
             return self::prepareNumberToFormat($number);
         }
 
-        return number_format(self::prepareNumberToFormat($number), $decimals, '.', $thousandsSeparator);
+        return number_format(self::prepareNumberToFormat($number), $decimals, '.', ($thousandsSeparator ? ',' : ''));
     }
 
     /**
      * Formata número para o formato real
      * @param mixed $number
      * @param int $decimals
-     * @param string $thousandsSeparator
+     * @param boolean $thousandsSeparator
      * @return string
      */
-    static public function toReal($number, $decimals = 2, $thousandsSeparator = '')
+    static public function toReal($number, $decimals = 2, $thousandsSeparator = false)
     {
-        return number_format(self::prepareNumberToFormat($number), $decimals, ',', $thousandsSeparator);
+        return number_format(self::prepareNumberToFormat($number), $decimals, ',', ($thousandsSeparator ? '.' : ''));
     }
 
     /**
