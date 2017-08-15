@@ -23,7 +23,7 @@ desired effect
 |---------------------------------------------------------|
 */
 ?>
-<body data-token="{{ csrf_token() }}" class="hold-transition skin-yellow sidebar-mini layout-boxed" data-section="{{ !empty($section) ? $section : '' }}" data-section-item="{{ !empty($section_item) ? $section_item : '' }}">
+<body data-token="{{ csrf_token() }}" class="hold-transition sidebar-mini layout-boxed skin-purple skin-purple-light skin-red skin-red-light skin-green skin-green-light skin-black skin-black-light skin-yellow skin-yellow-light skin-blue skin-blue-light" data-section="{{ !empty($section) ? $section : '' }}" data-section-item="{{ !empty($section_item) ? $section_item : '' }}">
     <div class="wrapper">
         @include('panel::header')
 
