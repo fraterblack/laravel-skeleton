@@ -34,8 +34,7 @@ class ContactRecipientsController extends BaseController
         $this->request = $request;
         $this->contactRecipientRepository = $contactRecipientRepository;
 
-        view()->share('section', 'configurations');
-        view()->share('section_item', 'contactRecipients');
+        view()->share('active_menu_item', 'cms.contactRecipients');
     }
 
     public function index()

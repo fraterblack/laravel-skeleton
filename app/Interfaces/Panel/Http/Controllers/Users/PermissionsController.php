@@ -34,8 +34,7 @@ class PermissionsController extends BaseController
         $this->request = $request;
         $this->permissionRepository = $permissionRepository;
 
-        view()->share('section', 'acl');
-        view()->share('section_item', 'user_role_permissions');
+        view()->share('active_menu_item', 'users.user_role_permissions');
     }
 
     public function index()

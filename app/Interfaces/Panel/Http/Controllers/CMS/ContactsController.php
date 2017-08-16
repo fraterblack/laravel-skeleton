@@ -40,8 +40,7 @@ class ContactsController extends BaseController
         $this->contactRecipientRepository = $contactRecipientRepository;
         $this->contactRepository = $contactRepository;
 
-        view()->share('section', 'cms');
-        view()->share('section_item', 'contacts');
+        view()->share('active_menu_item', 'cms.contacts');
     }
 
     public function index()

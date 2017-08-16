@@ -33,8 +33,7 @@ class RolesController extends BaseController
         $this->request = $request;
         $this->roleRepository = $roleRepository;
 
-        view()->share('section', 'acl');
-        view()->share('section_item', 'user_roles');
+        view()->share('active_menu_item', 'users.user_roles');
     }
 
     public function index()

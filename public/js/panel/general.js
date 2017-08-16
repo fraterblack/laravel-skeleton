@@ -737,22 +737,6 @@ $(window).ready(function(){
         $(this).change();
     });
 
-    //MARCA COMO ATIVO NO MENU LATERAL A SEÇÃO E A PÁGINA QUE O USUÁRIO ESTÁ
-    function activeSidebarMenuItem() {
-        //Seção
-        var section = $('body').data('section');
-        if (section != '') {
-            $('.sidebar-menu [data-section="' + section + '"]').addClass('active');
-        }
-
-        //Item da seção
-        var sectionItem = $('body').data('section-item');
-        if (sectionItem != "") {
-            $('.sidebar-menu [data-section-item="' + sectionItem + '"]').addClass('active');
-        }
-    }
-    activeSidebarMenuItem();
-
     //TABELAS
     // Plugin DataTable
     $('.data-table').DataTable({

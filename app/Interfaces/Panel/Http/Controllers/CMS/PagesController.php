@@ -37,8 +37,7 @@ class PagesController extends BaseController
         $this->request = $request;
         $this->pageRepository = $pageRepository;
 
-        view()->share('section', 'cms');
-        view()->share('section_item', 'pages');
+        view()->share('active_menu_item', 'cms.pages');
     }
 
     public function index()

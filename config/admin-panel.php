@@ -12,7 +12,7 @@ return [
 
     //Main Menu
     'menu' => [
-        'dashboard' => [
+        'general.dashboard' => [
             'text' => 'Painel',
             'route' => ['admin.initial'], //You can pass a array of parameters in the position 1
             'icon' => 'fa fa-bar-chart',
@@ -23,17 +23,17 @@ return [
             'text' => 'CMS',
             'icon' => 'fa fa-edit',
             'submenu' => [
-                'banners' => [
+                'cms.banners' => [
                     'text' => 'Banners',
                     'route' => ['admin.banners.index'],
                     'shield' => 'admin.banners',
                 ],
-                'contacts' => [
+                'cms.contacts' => [
                     'text' => 'Contatos',
                     'route' => ['admin.contacts.index'],
                     'shield' => 'admin.contacts',
                 ],
-                'pages' => [
+                'cms.pages' => [
                     'text' => 'Páginas',
                     'route' => ['admin.pages.index'],
                     'shield' => 'admin.pages',
@@ -44,7 +44,7 @@ return [
             'text' => 'Usuários',
             'icon' => 'fa fa-users',
             'submenu' => [
-                'users' => [
+                'users.users' => [
                     'text' => 'Usuários',
                     'route' => ['admin.users.index'],
                     'shield' => 'admin.users',
@@ -53,11 +53,11 @@ return [
                     'text' => 'Controle de Acesso',
                     'shield' => 'admin.user_roles',
                     'submenu' => [
-                        'user_roles' => [
+                        'users.user_roles' => [
                             'text' => 'Funções de Usuário',
                             'route' => ['admin.user_roles.index'],
                         ],
-                        'user_role_permissions' => [
+                        'users.user_role_permissions' => [
                             'text' => 'Permissões',
                             'route' => ['admin.user_role_permissions.index'],
                         ],
@@ -69,7 +69,7 @@ return [
             'text' => 'Configurações',
             'icon' => 'fa fa-gears',
             'submenu' => [
-                'contactRecipients' => [
+                'cms.contactRecipients' => [
                     'text' => 'Destinatários de Contato',
                     'route' => ['admin.contactRecipients.index'],
                     'shield' => 'admin.contact.recipients',
@@ -77,12 +77,12 @@ return [
                 'configurations' => [
                     'text' => 'Configurações Avançadas',
                     'submenu' => [
-                        'bannerPlaces' => [
+                        'cms.bannerPlaces' => [
                             'text' => 'Locais de Banners',
                             'route' => ['admin.bannerPlaces.index'],
                             'shield' => 'admin.banners.places',
                         ],
-                        'cacheControl' => [
+                        'general.cacheControl' => [
                             'text' => 'Cache',
                             'route' => ['admin.utils.cacheControl'],
                             'shield' => 'admin.general.settings',

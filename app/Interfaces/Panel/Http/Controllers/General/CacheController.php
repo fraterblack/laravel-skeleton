@@ -33,8 +33,7 @@ class CacheController extends BaseController
         $this->request = $request;
         $this->app = $app;
 
-        view()->share('section', 'configurations');
-        view()->share('section_item', 'cacheControl');
+        view()->share('active_menu_item', 'general.cacheControl');
     }
 
     public function cacheControl()

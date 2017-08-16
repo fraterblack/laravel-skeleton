@@ -12,6 +12,8 @@ class MainMenuComposer
 
     protected $menuParameters;
 
+    protected $activeMenuItem;
+
     public function __construct(Request $request)
     {
         $this->request = $request;
@@ -21,6 +23,8 @@ class MainMenuComposer
 
     public function compose(View $view)
     {
+        $this->activeMenuItem = $view->active_menu_item;
+
         $view->with([
             'menu' => $this->menuParameters()
         ]);
@@ -41,14 +45,17 @@ class MainMenuComposer
 
     /**
      * @param array $data
+     * @param integer $depth
      * @return Collection
      */
-    protected function prepareMenuParameters(array $data)
+    protected function prepareMenuParameters(array $data, $depth = 0)
     {
-        return collect($data)->map(function ($item) {
+        return collect($data)->map(function ($item) use ($depth) {
             if (! empty($item['submenu'])) {
-                $item['submenu'] = $this->prepareMenuParameters($item['submenu']);
+                $item['submenu'] = $this->prepareMenuParameters($item['submenu'], ($depth + 1));
             }
+
+            $item['depth'] = $depth;
 
             return collect($item);
         });
@@ -64,7 +71,7 @@ class MainMenuComposer
             if ($item->get('submenu')) {
                 $item->put('submenu', $this->hideBlockedItems($item->get('submenu')));
 
-                if ($item->get('submenu')->count() == 0) {
+                if ($item->get('submenu')->isEmpty()) {
                     return false;
                 }
             }
@@ -84,12 +91,17 @@ class MainMenuComposer
      */
     protected function parseMenuItems(Collection $data)
     {
-        return $data->map(function ($item) {
+        return $data->map(function ($item, $key) {
+            $isActive = false;
+
             if ($item->get('submenu')) {
                 $item->put('submenu', $this->parseMenuItems($item->get('submenu')));
+
+                $isActive = $item->get('submenu')->containsStrict('active', true);
             }
 
             $item->put('route', $this->createRoute($item->get('route')));
+            $item->put('active', ! $isActive ? $this->itemIsActive($key) : $isActive);
 
             return collect($item);
         });
@@ -108,5 +120,18 @@ class MainMenuComposer
         }
 
         return '';
+    }
+
+    /**
+     * @param string|null $code
+     * @return boolean
+     */
+    protected function itemIsActive($code = null)
+    {
+        if ($code == $this->activeMenuItem) {
+            return true;
+        }
+
+        return false;
     }
 }

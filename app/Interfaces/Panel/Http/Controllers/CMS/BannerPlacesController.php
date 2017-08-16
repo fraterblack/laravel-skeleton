@@ -37,8 +37,7 @@ class BannerPlacesController extends BaseController
         $this->request = $request;
         $this->bannerPlaceRepository = $bannerPlaceRepository;
 
-        view()->share('section', 'configurations');
-        view()->share('section_item', 'bannerPlaces');
+        view()->share('active_menu_item', 'cms.bannerPlaces');
     }
 
     public function index()

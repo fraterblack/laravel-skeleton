@@ -23,7 +23,7 @@ class DashboardController extends BaseController
 
         $this->request = $request;
 
-        view()->share('section', 'dashboard');
+        view()->share('active_menu_item', 'general.dashboard');
     }
 
     public function initial()

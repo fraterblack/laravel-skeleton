@@ -39,8 +39,7 @@ class UsersController extends BaseController
         $this->request = $request;
         $this->userRepository = $userRepository;
 
-        view()->share('section', 'acl');
-        view()->share('section_item', 'users');
+        view()->share('active_menu_item', 'users.users');
     }
 
     public function index()
