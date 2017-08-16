@@ -275,30 +275,4 @@ return [
     'no_csrf' => [
         '/admin/*/upload-imagens',
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Admin Panel Configurations
-    |--------------------------------------------------------------------------
-    |
-    | Configurações específicas do painel de administração
-    |
-    */
-    'admin' => [
-        //Admin URL
-        'url' => env('ADMIN_URL', ''),
-
-        //Developer Information
-        'developer' => [
-            'logo' => '/images/panel/logo-nueva.png',
-            'title' => 'Desenvolvido por Agência Nueva',
-            'url' => 'http://www.agencianueva.com.br'
-        ],
-
-        //Contractor Information
-        'contractor' => [
-            'logo' => '/images/panel/logo-cliente.png',
-            'name' => 'Loucos por Festa'
-        ]
-    ]
 ];

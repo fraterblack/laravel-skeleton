@@ -4,7 +4,7 @@
     @include('panel::_partial.messages')
 
     <div class="login-box-body">
-        <p class="login-box-msg"><img src="{{ config('app.admin.contractor.logo') }}" alt="{{ config('app.admin.contractor.name') }}"></p>
+        <p class="login-box-msg"><img src="{{ config('admin-panel.contractor.logo') }}" alt="{{ config('admin-panel.contractor.name') }}"></p>
 
         {!! Form::open([ 'route' => 'admin.auth.postResetPassword', 'class' => 'has-validation ui form errors-inline art-auth-form' ]) !!}
 

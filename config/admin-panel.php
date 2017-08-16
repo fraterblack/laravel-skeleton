@@ -1,6 +1,15 @@
 <?php
 
 return [
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Panel Configurations
+    |--------------------------------------------------------------------------
+    |
+    | Configurações específicas do painel de administração
+    |
+    */
+
     //Main Menu
     'menu' => [
         'dashboard' => [

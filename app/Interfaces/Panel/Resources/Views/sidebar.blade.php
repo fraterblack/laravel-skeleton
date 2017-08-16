@@ -2,7 +2,7 @@
     <section class="sidebar">
         <div class="user-panel">
             <div class="pull-left">
-                <img src="{{ config('app.admin.contractor.logo') }}" alt="config('app.admin.contractor.name')">
+                <img src="{{ config('admin-panel.contractor.logo') }}" alt="config('admin-panel.contractor.name')">
             </div>
         </div>
 

@@ -15,9 +15,9 @@ trait Acl
             $this->mailer->send('emails.acl.newUserNotification', [
                 'user' => $user,
                 'password' => $password,
-                'panel_url' => config('app.admin.url')
+                'panel_url' => config('admin-panel.url')
             ], function ($m) use ($user) {
-                $m->to($user->email, $user->name)->subject("Você foi cadastrado como administrador do site " . config('app.admin.contractor.name'));
+                $m->to($user->email, $user->name)->subject("Você foi cadastrado como administrador do site " . config('admin-panel.contractor.name'));
             });
         } catch (ClientException $e) {
             Log::critical($e->getMessage(), [
@@ -36,9 +36,9 @@ trait Acl
             $this->mailer->send('emails.acl.updatedUserNotification', [
                 'user' => $user,
                 'password' => $password,
-                'panel_url' => config('app.admin.url')
+                'panel_url' => config('admin-panel.url')
             ], function ($m) use ($user) {
-                $m->to($user->email, $user->name)->subject("Seu cadastro como administrador do site " . config('app.admin.contractor.name') . ' foi alterado');
+                $m->to($user->email, $user->name)->subject("Seu cadastro como administrador do site " . config('admin-panel.contractor.name') . ' foi alterado');
             });
         } catch (ClientException $e) {
             Log::critical($e->getMessage(), [
