@@ -76,6 +76,11 @@
       "public/vendor/tinymce" : [
         "resources/assets/vendor/tinymce"
       ],
+      "public/vendor/fancybox" : [
+        "resources/assets/vendor/bower/fancybox/source/fancybox_sprite.png",
+        "resources/assets/vendor/bower/fancybox/source/fancybox_loading.gif",
+        "resources/assets/vendor/bower/fancybox/source/fancybox_overlay.png"
+      ],
       "public/vendor/fine-uploader/placeholders" : [
         "resources/assets/vendor/bower/fine-uploader/dist/placeholders/not_available-generic.png",
         "resources/assets/vendor/bower/fine-uploader/dist/placeholders/waiting-generic.png"
