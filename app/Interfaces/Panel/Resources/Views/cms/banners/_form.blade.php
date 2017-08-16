@@ -45,7 +45,7 @@
         <div class="row">
             <div class="field form-group col-md-7 col-lg-5">
                 <div class="box box-widget form-group">
-                    <div class="field required box-header">
+                    <div class="field required">
                         {!! Form::label('image', 'Imagem do Banner') !!}
                     </div>
                     @if(!empty($banner) && $banner->present()->getUrlImage('thumb'))
