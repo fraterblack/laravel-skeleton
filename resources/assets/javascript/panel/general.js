@@ -383,8 +383,9 @@ $(window).ready(function(){
 
     //Single Date
     var attachDateRangePicker = function (input) {
-        datePickerConfig.singleDatePicker = false;
-        datePickerConfig.ranges = {
+        var dateRangePickerConfig = datePickerConfig;
+        dateRangePickerConfig.singleDatePicker = false;
+        dateRangePickerConfig.ranges = {
             'Hoje': [moment(), moment()],
             'Ontem': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
             'Último 7 dias': [moment().subtract(6, 'days'), moment()],
@@ -394,7 +395,7 @@ $(window).ready(function(){
             'Mês passado': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
         };
 
-        input.daterangepicker(datePickerConfig, function(start, end, label) {
+        input.daterangepicker(dateRangePickerConfig, function(start, end, label) {
             input.val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
         });
 
@@ -416,14 +417,15 @@ $(window).ready(function(){
     });
 
     //Datetime
-    var datetimePickerConfig = $.extend({
-        "timePicker": true,
-        "timePicker24Hour": true,
-        "timePickerSeconds": false
-    }, datePickerConfig);
-    datetimePickerConfig.locale.format = "DD/MM/YYYY HH:mm:ss";
-
     var attachDatetimePicker = function (input) {
+        var datetimePickerConfig = datePickerConfig;
+
+        datetimePickerConfig.singleDatePicker = true;
+        datetimePickerConfig.timePicker = true;
+        datetimePickerConfig.timePicker24Hour = true;
+        datetimePickerConfig.timePickerSeconds = false;
+        datetimePickerConfig.locale.format = "DD/MM/YYYY HH:mm:ss";
+
         input.daterangepicker(datetimePickerConfig, function(start, end, label) {
             input.val(start.format('DD/MM/YYYY HH:mm:ss'));
         });

@@ -355,13 +355,20 @@ $(window).ready(function(){
     if ($btnGoBack[0]) {
         //Se houver query string, adiciona ao link voltar
         var storedQueryStrings = sessionStorage.getItem('query_strings');
-        if (storedQueryStrings) {
-            $btnGoBack.each(function () {
-                var button = $(this);
 
-                button.attr('href', button.attr('href') + storedQueryStrings);
-            });
-        }
+        $btnGoBack.each(function () {
+            var button = $(this);
+
+            if (button.hasClass('force-last-url')) {
+                if (document.referrer) {
+                    button.attr('href', document.referrer);
+                }
+            } else {
+                if (storedQueryStrings) {
+                    button.attr('href', button.attr('href') + storedQueryStrings);
+                }
+            }
+        });
     } else {
         //Remove sessão com as queries strings
         sessionStorage.removeItem('query_strings');
@@ -633,17 +640,19 @@ $(window).ready(function(){
 
     //Single Date
     var attachDateRangePicker = function (input) {
-        datePickerConfig.singleDatePicker = false;
-        datePickerConfig.ranges = {
+        var dateRangePickerConfig = datePickerConfig;
+        dateRangePickerConfig.singleDatePicker = false;
+        dateRangePickerConfig.ranges = {
             'Hoje': [moment(), moment()],
             'Ontem': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
             'Último 7 dias': [moment().subtract(6, 'days'), moment()],
-            'Últimos 30 dias': [moment().subtract(29, 'days'), moment()],
+            'Últimos 30 dias': [moment().subtract(30, 'days'), moment()],
+            'Próximos 30 dias': [moment(), moment().add(30, 'days')],
             'Este mês': [moment().startOf('month'), moment().endOf('month')],
             'Mês passado': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
         };
 
-        input.daterangepicker(datePickerConfig, function(start, end, label) {
+        input.daterangepicker(dateRangePickerConfig, function(start, end, label) {
             input.val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
         });
 
@@ -665,14 +674,15 @@ $(window).ready(function(){
     });
 
     //Datetime
-    var datetimePickerConfig = $.extend({
-        "timePicker": true,
-        "timePicker24Hour": true,
-        "timePickerSeconds": false
-    }, datePickerConfig);
-    datetimePickerConfig.locale.format = "DD/MM/YYYY HH:mm:ss";
-
     var attachDatetimePicker = function (input) {
+        var datetimePickerConfig = datePickerConfig;
+
+        datetimePickerConfig.singleDatePicker = true;
+        datetimePickerConfig.timePicker = true;
+        datetimePickerConfig.timePicker24Hour = true;
+        datetimePickerConfig.timePickerSeconds = false;
+        datetimePickerConfig.locale.format = "DD/MM/YYYY HH:mm:ss";
+
         input.daterangepicker(datetimePickerConfig, function(start, end, label) {
             input.val(start.format('DD/MM/YYYY HH:mm:ss'));
         });
@@ -785,14 +795,14 @@ $(window).ready(function(){
             }
         })
         //Ao clicar no cabeçalho com ordenação ativa
-        .on('click', function () {
-            var column = $(this);
+            .on('click', function () {
+                var column = $(this);
 
-            formFilter.find(".orderBy").val(column.attr("data-column"));
-            formFilter.find(".sortedBy").val(column.attr("data-order"));
+                formFilter.find(".orderBy").val(column.attr("data-column"));
+                formFilter.find(".sortedBy").val(column.attr("data-order"));
 
-            formFilter.submit();
-        });
+                formFilter.submit();
+            });
     });
 
     formFilter.submit(function (e) {
