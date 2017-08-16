@@ -101,10 +101,10 @@ trait AdvancedIndexRepositoryTrait
     protected function addQueries(array $requestParam, $model)
     {
         $model->appends([
-            config('repository.request.params.search', 'search'), $this->validRequestParam($requestParam, config('repository.request.params.search')),
-            config('repository.request.params.filter', 'filter'), $this->validRequestParam($requestParam, config('repository.request.params.filter')),
-            config('repository.request.params.orderBy', 'orderBy'), $this->validRequestParam($requestParam, config('repository.request.params.orderBy')),
-            config('repository.request.params.sortedBy', 'sortedBy'), $this->validRequestParam($requestParam, config('repository.request.params.sortedBy')),
+            config('repository.request.params.search', 'search') => $this->validRequestParam($requestParam, config('repository.request.params.search')),
+            config('repository.request.params.filter', 'filter') => $this->validRequestParam($requestParam, config('repository.request.params.filter')),
+            config('repository.request.params.orderBy', 'orderBy') => $this->validRequestParam($requestParam, config('repository.request.params.orderBy')),
+            config('repository.request.params.sortedBy', 'sortedBy') => $this->validRequestParam($requestParam, config('repository.request.params.sortedBy')),
         ]);
     }
 
