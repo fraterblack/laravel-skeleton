@@ -23,7 +23,15 @@ class Banner extends Model
         'background_color',
         'active',
         'banner_place_id',
+        'availability_from',
+        'availability_to',
+    ];
+
+    protected $dates = [
         'created_at',
+        'updated_at',
+        'availability_from',
+        'availability_to',
     ];
 
     protected $casts = [
@@ -38,10 +46,17 @@ class Banner extends Model
     }
 
     /* Mutator */
-    public function setCreatedAtAttribute($value)
+    public function setAvailabilityFromAttribute($value)
     {
         if ($value) {
-            $this->attributes['created_at'] = \Carbon\Carbon::createFromFormat('d/m/Y H:i:s', $value)->toDateTimeString();
+            $this->attributes['availability_from'] = \Carbon\Carbon::createFromFormat('d/m/Y H:i:s', $value)->toDateTimeString();
+        }
+    }
+
+    public function setAvailabilityToAttribute($value)
+    {
+        if ($value) {
+            $this->attributes['availability_to'] = \Carbon\Carbon::createFromFormat('d/m/Y H:i:s', $value)->toDateTimeString();
         }
     }
 }
