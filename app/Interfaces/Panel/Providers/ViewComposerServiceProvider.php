@@ -4,6 +4,7 @@ namespace Lpf\Interfaces\Panel\Providers;
 
 use Lpf\Interfaces\Panel\Http\ViewComposers\IndexFilterComposer;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Lpf\Interfaces\Panel\Http\ViewComposers\MainMenuComposer;
 
 class ViewComposerServiceProvider extends ServiceProvider
 {
@@ -33,5 +34,6 @@ class ViewComposerServiceProvider extends ServiceProvider
     private function composeIndexFilter()
     {
       view()->composer(['panel::_partial.indexFilter.inputs'], IndexFilterComposer::class);
+        view()->composer(['panel::_partial.mainMenu.menu'], MainMenuComposer::class);
     }
 }

@@ -7,6 +7,6 @@
         </div>
 
         <!-- Sidebar Menu -->
-        @include('panel::_partial.sidebarMenu')
+        @include('panel::_partial.mainMenu.menu')
     </section>
 </aside>
