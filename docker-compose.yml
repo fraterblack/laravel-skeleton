@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  # Application
+  app:
+    image: ambientum/php:7.1-nginx
+    container_name: lpf-app
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "80:8080"
+
+  # Queues
+  queue:
+    image: ambientum/php:7.1-nginx
+    container_name: lpf-queue
+    command: php artisan queue:listen
+    volumes:
+      - .:/var/www/app
