@@ -20,4 +20,14 @@ trait SortableTrait
 
         return ['errors' => 'unknown error'];
     }
+
+    /**
+     * @param Request $request
+     */
+    public function resolveSortableLimit(Request $request)
+    {
+        if ($request->get('orderBy') == 'position') {
+            config(['repository.pagination.limit' => 9999]);
+        }
+    }
 }
